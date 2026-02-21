@@ -13,17 +13,8 @@
     "url": "https://github.com/pthneo/buckle.git"
   },
   "homepage": "https://github.com/pthneo/buckle",
-  "workspaces": [
-    "packages/*"
-  ],
-  "keywords": [
-    "buckle",
-    "local",
-    "development",
-    "dx",
-    "devtools",
-    "ui"
-  ],
+  "workspaces": ["packages/*"],
+  "keywords": ["buckle", "local", "development", "dx", "devtools", "ui"],
   "bugs": {
     "url": "https://github.com/pthneo/buckle/issues"
   },
@@ -48,9 +39,7 @@
     "typescript": "^5.9.3",
     "ultracite": "7.2.3"
   },
-  "trustedDependencies": [
-    "@biomejs/biome"
-  ],
+  "trustedDependencies": ["@biomejs/biome"],
   "dependencies": {
     "bun": "^1.3.9"
   }
