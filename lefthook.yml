@@ -1,0 +1,23 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.{ts,tsx,js,json}"
+      run: bunx biome format --write {staged_files}
+    lint:
+      glob: "*.{ts,tsx}"
+      run: bunx biome check {staged_files}
+
+pre-push:
+  commands:
+    test:
+      run: bun test
+    typecheck:
+      run: tsc --noEmit
+
+commit-msg:
+  commands:
+    conventional:
+      run: |
+        grep -qE "^(feat|fix|chore|docs|refactor|test|ci)(\(.+\))?: .+" {1} || \
+          (echo "Use conventional commit format: feat: description" && exit 1)
