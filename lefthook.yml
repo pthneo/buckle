@@ -1,12 +1,16 @@
 pre-commit:
+  jobs:
+    - run: bun x ultracite fix
+      glob:
+        - "**/*.js"
+        - "**/*.jsx"
+        - "**/*.ts"
+        - "**/*.tsx"
+        - "**/*.json"
+        - "**/*.jsonc"
+        - "**/*.css"
+      stage_fixed: true
   parallel: true
-  commands:
-    format:
-      glob: "*.{ts,tsx,js,json}"
-      run: bunx biome format --write {staged_files}
-    lint:
-      glob: "*.{ts,tsx}"
-      run: bunx biome check {staged_files}
 
 pre-push:
   commands:

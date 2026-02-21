@@ -1,45 +1,57 @@
 {
-	"name": "buckle",
-	"version": "0.1.0",
-	"description": "A modern, lightweight and performant orchestration and introspection UI for your web applications. Upgrade your local development experience with Buckle.",
-	"author": {
-		"name": "Ben Schenk",
-		"email": "contact@benschenk.dev",
-		"url": "https://benschenk.dev"
-	},
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/pthneo/buckle.git"
-	},
-	"homepage": "https://github.com/pthneo/buckle",
-	"workspaces": ["packages/*"],
-	"keywords": ["buckle", "local", "development", "dx", "devtools", "ui"],
-	"bugs": {
-		"url": "https://github.com/pthneo/buckle/issues"
-	},
-	"scripts": {
-		"dev": "turbo dev",
-		"build": "turbo build",
-		"test": "turbo test",
-		"lint": "biome check .",
-		"format": "biome format . --write",
-		"changeset": "changeset",
-		"version": "changeset version",
-		"prepare": "lefthook install",
-		"prerelease": "turbo build",
-		"release": "changeset publish"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.9.0",
-		"@changesets/cli": "^2.27.0",
-		"@types/bun": "^1.3.9",
-		"lefthook": "^2.1.1",
-		"turbo": "^2.3.0",
-		"typescript": "^5.9.3"
-	},
-	"trustedDependencies": ["@biomejs/biome"],
-	"dependencies": {
-		"bun": "^1.3.9"
-	}
+  "name": "buckle",
+  "version": "0.1.0",
+  "description": "A modern, lightweight and performant orchestration and introspection UI for your web applications. Upgrade your local development experience with Buckle.",
+  "author": {
+    "name": "Ben Schenk",
+    "email": "contact@benschenk.dev",
+    "url": "https://benschenk.dev"
+  },
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pthneo/buckle.git"
+  },
+  "homepage": "https://github.com/pthneo/buckle",
+  "workspaces": [
+    "packages/*"
+  ],
+  "keywords": [
+    "buckle",
+    "local",
+    "development",
+    "dx",
+    "devtools",
+    "ui"
+  ],
+  "bugs": {
+    "url": "https://github.com/pthneo/buckle/issues"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "prepare": "lefthook install",
+    "prerelease": "turbo build",
+    "release": "changeset publish",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.4",
+    "@changesets/cli": "^2.27.0",
+    "@types/bun": "^1.3.9",
+    "lefthook": "^2.1.1",
+    "turbo": "^2.3.0",
+    "typescript": "^5.9.3",
+    "ultracite": "7.2.3"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome"
+  ],
+  "dependencies": {
+    "bun": "^1.3.9"
+  }
 }
