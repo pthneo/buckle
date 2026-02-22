@@ -1,0 +1,11 @@
+{
+  "name": "@buckle/docs",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "mint dev",
+    "build": "mint build"
+  },
+  "devDependencies": {
+    "mint": "latest"
+  }
+}
