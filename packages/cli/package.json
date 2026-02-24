@@ -1,0 +1,7 @@
+{
+  "name": "@buckle/cli",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "go build -o ../../dist/cli ./src -ldflags \"-X main.version=$VERSION\""
+  }
+}
