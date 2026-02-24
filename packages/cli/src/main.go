@@ -3,10 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
+	"syscall"
+	"time"
 )
 
 // Defaults
@@ -20,11 +25,16 @@ const (
 const (
 	EXIT_SUCCESS = 0
 	INCORRECT_CLI_ARGUMENTS = 1
+	BUCKLE_ALREADY_RUNNING = 2
+	FAILED_TO_START_SERVER = 3
 )
 
 // The version of Buckle
 var version = "dev" 
 
+/*
+ * Main entry point for the CLI.
+ */
 func main() {
 	if len(os.Args) < 2 {
 		printHelp()
@@ -67,6 +77,9 @@ Flags:
 `)
 }
 
+/*
+ * Parse the flags and run the server.
+ */
 func run(args []string) {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
 
@@ -82,14 +95,62 @@ func run(args []string) {
 
 	fs.Usage = printHelp
 	fs.Parse(args)
+
+	if pid, err := getPid(); err == nil {
+		if (isRunning(pid)) {
+			fmt.Printf("Buckle is already running (process: %d)\n", pid)
+			fmt.Println("Run 'buckle down' to stop it first.")
+			os.Exit(BUCKLE_ALREADY_RUNNING)
+		}
+		os.Remove(getPidFile())
+	}
+
+	binary := getServerBinary()
+
+	if *detach {
+		// TODO: Implement detached mode
+	} else {
+		runServer(binary, *config, *port, *open)
+	}
+}
+
+func runServer(binary string, config string, port int, open bool) {
+	// TODO: Implement server run
+	cmd := buildServerCmd(binary, config, port)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	if err := cmd.Start(); err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to start server: %v\n", err)
+		os.Exit(FAILED_TO_START_SERVER)
+	}
+
+	writePid(cmd.Process.Pid)
+	defer os.Remove(getPidFile())
+
+	url := fmt.Sprintf("http://localhost:%d", port)
+	if err := waitForServer(url + "/api/health"); err != nil {
+		// TODO: ...
+	}
+}
+
+/*
+ * Obtain the path to the server binary. The BUCKLE_SERVER_BIN environment variable is set by the 
+ * npm shim. Otherwise it will have been installed next to the CLI binary.
+ */
+func getServerBinary() string {
+	if env := os.Getenv("BUCKLE_SERVER_BIN"); env != "" {
+		return env
+	}
+	return filepath.Join(filepath.Dir(os.Args[0]), "buckle-server")
 }
 
 func getStateDir() string {
-	home, err := os.UserHomeDir()
+	pwd, err := os.Getwd()
 	if err != nil {
 		panic(err)
 	}
-	dir := filepath.Join(home, ".buckle")
+	dir := filepath.Join(pwd, ".buckle")
 	os.MkdirAll(dir, 0755)
 	return dir
 }
@@ -113,4 +174,52 @@ func getPid() (int, error) {
 		panic(err)
 	}
 	return strconv.Atoi(strings.TrimSpace(string(data)))
+}
+
+func buildServerCmd(binary string, config string, port int) *exec.Cmd {
+	cmd := exec.Command(binary)
+	cmd.Env = append(os.Environ(),
+		fmt.Sprintf("PORT=%d", port),
+		fmt.Sprintf("CONFIG_PATH=%s", config),
+	)
+	return cmd
+}
+
+func openBrowser(url string) {
+	switch runtime.GOOS {
+	case "darwin": 
+		exec.Command("open", url).Start()
+	case "windows": 
+		exec.Command("cmd", "/c", "start", "", url).Start()
+	default: 
+		exec.Command("xdg-open", url).Start()
+	}
+}
+
+/*
+ * Check if the process is running by sending a fake signal.
+ */
+func isRunning(pid int) bool {
+	process, err := os.FindProcess(pid)
+	if err != nil {
+		return false
+	}
+	return process.Signal(syscall.Signal(0)) == nil
+}
+
+/*
+ * Wait for the server to start and return the URL.
+ */
+func waitForServer(url string) error {
+	const timeout = 10 * time.Second
+	client := &http.Client{Timeout: 2 * time.Second}
+	deadline := time.Now().Add(timeout)
+	for time.Now().Before(deadline) {
+		resp, err := client.Get(url)
+		if err == nil && resp.StatusCode == 200 {
+			return nil
+		}
+		time.Sleep(200 * time.Millisecond)
+	}
+	return fmt.Errorf("timed out after %s", timeout)
 }
