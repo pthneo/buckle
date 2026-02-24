@@ -29,7 +29,11 @@
         "groups": [
           {
             "group": "Getting started",
-            "pages": ["index", "quickstart", "development"]
+            "pages": [
+              "index",
+              "quickstart",
+              "development"
+            ]
           },
           {
             "group": "Buckle CLI",
