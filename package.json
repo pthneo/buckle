@@ -2,6 +2,7 @@
   "name": "buckle",
   "version": "0.1.0",
   "description": "A modern, lightweight and performant orchestration and introspection UI for your web applications. Upgrade your local development experience with Buckle.",
+  "private": true,
   "author": {
     "name": "Ben Schenk",
     "email": "contact@benschenk.dev",
