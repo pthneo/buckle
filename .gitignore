@@ -2,3 +2,5 @@ node_modules/
 .turbo
 .env
 PLAN.md
+IDEAS.md
+packages/ui
