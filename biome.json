@@ -27,7 +27,8 @@
     "rules": {
       "recommended": true,
       "style": {
-        "noEnum": "off"
+        "noEnum": "off",
+        "useConsistentTypeDefinitions": "off"
       }
     }
   },

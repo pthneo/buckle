@@ -5,7 +5,7 @@
 /**
  * The main Buckle config object that the .yaml parser outputs.
  */
-export interface Config {
+interface Config {
   apps?: AppConfig[];
   caches?: CacheConfig[];
   databases?: DatabaseConfig[];
@@ -17,12 +17,17 @@ export interface Config {
   webhooks?: WebhookConfig[];
 }
 
+interface ServiceConfig {
+  name: string;
+  type: string;
+}
+
 /**
  * A web application or worker config object.
  *
  * TODO: Figure out how to handle log forwarding.
  */
-export interface AppConfig {
+interface AppConfig {
   healthEndpoint?: string;
   logsEndpoint?: string;
   name: string;
@@ -33,12 +38,15 @@ export interface AppConfig {
 /**
  * Generic database config type.
  */
-export type DatabaseConfig = PostgresConfig | MySQLConfig | SQLiteConfig | MongoDBConfig;
+interface DatabaseConfig {
+  name: string;
+  type: string;
+}
 
 /**
  * PostgreSQL database config type.
  */
-export interface PostgresConfig {
+interface PostgresConfig {
   database: string;
   host: string;
   name: string;
@@ -52,7 +60,7 @@ export interface PostgresConfig {
 /**
  * MySQL database config type.
  */
-export interface MySQLConfig {
+interface MySQLConfig {
   database: string;
   host: string;
   name: string;
@@ -65,7 +73,7 @@ export interface MySQLConfig {
 /**
  * SQLite database config type.
  */
-export interface SQLiteConfig {
+interface SQLiteConfig {
   name: string;
   path: string;
   type: "sqlite";
@@ -74,7 +82,7 @@ export interface SQLiteConfig {
 /**
  * MongoDB database config type.
  */
-export interface MongoDBConfig {
+interface MongoDBConfig {
   database?: string;
   host: string;
   name: string;
@@ -87,12 +95,12 @@ export interface MongoDBConfig {
 /**
  * Generic cache config type.
  */
-export type CacheConfig = RedisConfig | ValkeyConfig;
+type CacheConfig = RedisConfig | ValkeyConfig;
 
 /**
  * Redis cache config type.
  */
-export interface RedisConfig {
+interface RedisConfig {
   host?: string;
   name: string;
   password?: string;
@@ -106,7 +114,7 @@ export interface RedisConfig {
 /**
  * Valkey cache config type.
  */
-export interface ValkeyConfig {
+interface ValkeyConfig {
   host?: string;
   name: string;
   password?: string;
@@ -120,12 +128,12 @@ export interface ValkeyConfig {
 /**
  * Generic object storage config type.
  */
-export type ObjectStorageConfig = S3Config | R2Config | MinioConfig;
+type ObjectStorageConfig = S3Config | R2Config | MinioConfig;
 
 /**
  * S3 object storage config type.
  */
-export interface S3Config {
+interface S3Config {
   accessKeyId: string;
   bucket?: string;
   endpoint?: string;
@@ -138,7 +146,7 @@ export interface S3Config {
 /**
  * R2 object storage config type.
  */
-export interface R2Config {
+interface R2Config {
   accessKeyId: string;
   accountId: string;
   bucket?: string;
@@ -151,7 +159,7 @@ export interface R2Config {
 /**
  * Minio object storage config type.
  */
-export interface MinioConfig {
+interface MinioConfig {
   accessKeyId: string;
   bucket?: string;
   endpoint: string;
@@ -164,12 +172,12 @@ export interface MinioConfig {
 /**
  * Generic search engine config type.
  */
-export type SearchEngineConfig = ElasticsearchConfig | TypesenseConfig | MeilisearchConfig;
+type SearchEngineConfig = ElasticsearchConfig | TypesenseConfig | MeilisearchConfig;
 
 /**
  * Elasticsearch search engine config type.
  */
-export interface ElasticsearchConfig {
+interface ElasticsearchConfig {
   apiKey?: string;
   name: string;
   password?: string;
@@ -181,7 +189,7 @@ export interface ElasticsearchConfig {
 /**
  * Typesense search engine config type.
  */
-export interface TypesenseConfig {
+interface TypesenseConfig {
   apiKey: string;
   name: string;
   type: "typesense";
@@ -191,7 +199,7 @@ export interface TypesenseConfig {
 /**
  * Meilisearch search engine config type.
  */
-export interface MeilisearchConfig {
+interface MeilisearchConfig {
   apiKey?: string;
   name: string;
   type: "meilisearch";
@@ -201,12 +209,12 @@ export interface MeilisearchConfig {
 /**
  * Generic queue config type.
  */
-export type QueueConfig = RedisQueueConfig | SQSConfig | RabbitMQConfig | KafkaConfig;
+type QueueConfig = RedisQueueConfig | SQSConfig | RabbitMQConfig | KafkaConfig;
 
 /**
  * Redis queue config type.
  */
-export interface RedisQueueConfig {
+interface RedisQueueConfig {
   host?: string;
   name: string;
   password?: string;
@@ -220,7 +228,7 @@ export interface RedisQueueConfig {
 /**
  * SQS queue config type.
  */
-export interface SQSConfig {
+interface SQSConfig {
   accessKeyId: string;
   name: string;
   region: string;
@@ -232,7 +240,7 @@ export interface SQSConfig {
 /**
  * RabbitMQ queue config type.
  */
-export interface RabbitMQConfig {
+interface RabbitMQConfig {
   name: string;
   type: "rabbitmq";
   url: string;
