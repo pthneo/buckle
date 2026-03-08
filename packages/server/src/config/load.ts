@@ -2,8 +2,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { file, YAML } from "bun";
 import { EXIT_CODES } from "../error";
-import type { Config } from "./types";
-import { validateConfig } from "./validation";
+import { DEFAULT_CONFIG_VERSION, validateConfig } from "./validation";
 
 /**
  * Loads and validates the config file.
@@ -17,24 +16,23 @@ export async function loadConfig(path: string): Promise<Config> {
   if (!existsSync(filepath)) {
     console.warn("Config file not found, using default config.");
     return {
-      version: 1
-      // Default config is empty.
+      version: DEFAULT_CONFIG_VERSION,
+      apps: [],
+      caches: [],
+      databases: [],
+      objectStorages: [],
+      queues: [],
+      searchEngines: [],
+      webhooks: []
     };
   }
 
-  let config: unknown;
   try {
     const rawConfig = await file(filepath).text();
-    config = await YAML.parse(rawConfig);
+    const parsedConfig = await YAML.parse(rawConfig);
+    return validateConfig(parsedConfig);
   } catch (error) {
     console.error("Failed to read config file:", error);
     process.exit(EXIT_CODES.INVALID_CONFIG);
   }
-
-  const validatedConfig = validateConfig(config);
-  if (!validatedConfig) {
-    process.exit(EXIT_CODES.INVALID_CONFIG);
-  }
-
-  return validatedConfig;
 }
