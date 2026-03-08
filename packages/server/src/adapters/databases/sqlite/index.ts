@@ -2,21 +2,21 @@ import { SQL } from "bun";
 import { Adapter } from "../../adapter";
 
 /**
- * Adapter for postgres databases
+ * Adapter for SQLite databases
  */
-export class PostgresAdapter extends Adapter<SQL, PostgresConfig> {
+export class SQLiteAdapter extends Adapter<SQL, SQLiteConfig> {
   /**
-   * Connect to the postgres database
+   * Connect to the SQLite database
    */
   connect(): void {
     this.client = new SQL({
-      adapter: "postgres",
-      ...this.config.connection
+      adapter: "sqlite",
+      filename: this.config.connection
     });
   }
 
   /**
-   * Check the health of the postgres database
+   * Check the health of the SQLite database
    */
   async checkHealth(): Promise<boolean> {
     if (!this.client) {
@@ -29,7 +29,6 @@ export class PostgresAdapter extends Adapter<SQL, PostgresConfig> {
         await this.client`SELECT 1`;
         return true;
       } catch {
-        // Wait before retrying
         await new Promise((resolve) => setTimeout(resolve, this.timeout / 10));
       }
     }
@@ -37,7 +36,7 @@ export class PostgresAdapter extends Adapter<SQL, PostgresConfig> {
   }
 
   /**
-   * Disconnect from the postgres database
+   * Disconnect from the SQLite database
    */
   async disconnect(): Promise<void> {
     if (this.client) {
@@ -46,11 +45,9 @@ export class PostgresAdapter extends Adapter<SQL, PostgresConfig> {
   }
 
   /**
-   * On config change, disconnect from the database, update the config, and connect to the database
-   *
-   * @param config The new config
+   * On config change, disconnect from the database, update the config, and reconnect.
    */
-  async onConfigChange(config: PostgresConfig): Promise<void> {
+  async onConfigChange(config: SQLiteConfig): Promise<void> {
     await this.disconnect();
     this.config = config;
     this.connect();

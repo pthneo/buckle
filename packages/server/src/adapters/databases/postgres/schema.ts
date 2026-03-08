@@ -10,7 +10,7 @@ const postgresConnectionOptionsSchema = z.object({
   host: z.string({ error: "Host is required" }),
   password: z.string({ error: "Password is required" }),
   port: z.number({ error: "Port is required" }),
-  ssl: z.boolean({ error: "SSL selection is required" }),
+  tls: z.boolean({ error: "TLS selection is required" }),
   username: z.string({ error: "Username is required" })
 });
 
@@ -27,8 +27,7 @@ const postgresConnectionSchema = z.xor([z.url(), postgresConnectionOptionsSchema
  * Matches the {@link PostgresConfig} type
  */
 export const postgresConfigSchema = z.object({
-  database: z.string(),
-  host: z.string(),
+  description: z.string().optional(),
   name: z.string(),
   type: z.literal("postgres"),
   connection: postgresConnectionSchema

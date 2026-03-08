@@ -25,6 +25,7 @@ type PostgresConnectionOptions = {
   host: string;
   password: string;
   port: number;
-  ssl: boolean;
+  tls: boolean;
   username: string;
 };
+s;
