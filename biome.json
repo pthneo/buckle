@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["!dist", "!node_modules", "!.changeset"]
+    "includes": ["!dist", "!node_modules", "!.changeset", "!packages/ui"]
   },
   "formatter": {
     "enabled": true,

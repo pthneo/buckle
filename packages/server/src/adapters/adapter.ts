@@ -1,5 +1,3 @@
-import type { ServiceConfig } from "src/config/types";
-
 /**
  * Abstract class for all adapters
  *
