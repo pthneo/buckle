@@ -2,6 +2,7 @@ import { serve } from "bun";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import index from "@/app/index.html";
 import { loadConfig, watchConfig } from "@/config";
 import { ServiceRegistry } from "@/registry";
 import { api } from "@/routes";
@@ -64,6 +65,10 @@ async function main() {
   serve({
     port,
     fetch: app.fetch,
+    routes: {
+      // Serve index.html for all unmatched routes.
+      "/": index
+    },
     // TODO: Remove
     development: {
       hmr: true,

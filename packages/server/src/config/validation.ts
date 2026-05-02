@@ -42,3 +42,5 @@ export function validateConfig(config: unknown): Config {
   }
   return result.data;
 }
+
+// TODO: Fix, crashes on empty yml file

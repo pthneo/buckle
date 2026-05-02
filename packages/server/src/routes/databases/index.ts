@@ -9,7 +9,7 @@ const databasesRoutes = new Hono<AppEnv>();
  */
 databasesRoutes.get("/", (c) => {
   const registry = c.get("services");
-  const databases = registry.getServices("databases");
+  const databases = registry.getCategory("databases");
   return c.json(databases);
 });
 
