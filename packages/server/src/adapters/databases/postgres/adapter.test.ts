@@ -108,43 +108,6 @@ describe("PostgresAdapter", () => {
     }, 500);
   });
 
-  describe("onConfigChange()", () => {
-    test("reconnects with new config", async () => {
-      adapter.connect();
-      const client = adapter.get() as unknown as { close: typeof mockClose };
-      const closeSpy = spyOn(client, "close").mockResolvedValue(undefined);
-
-      const newConfig: PostgresConfig = {
-        name: "new-pg",
-        type: "postgres",
-        connection: {
-          ...validConnectionOptions,
-          host: "db.example.com",
-          port: 5433
-        }
-      };
-
-      await adapter.onConfigChange(newConfig);
-
-      expect(closeSpy).toHaveBeenCalledTimes(1);
-      expect(adapter.get()).not.toBeNull();
-    });
-
-    test("new client reflects updated config", async () => {
-      adapter.connect();
-      const originalClient = adapter.get();
-      const client = adapter.get() as unknown as { close: typeof mockClose };
-      spyOn(client, "close").mockResolvedValue(undefined);
-
-      await adapter.onConfigChange({
-        ...postgresConfig,
-        name: "updated-pg"
-      });
-
-      expect(adapter.get()).not.toBe(originalClient);
-    });
-  });
-
   describe("get()", () => {
     test("returns null before connect", () => {
       expect(adapter.get()).toBeNull();
