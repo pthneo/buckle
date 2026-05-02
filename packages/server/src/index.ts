@@ -11,9 +11,9 @@ async function main() {
   const configPath = process.env.CONFIG_PATH || DEFAULT_CONFIG_PATH;
   const _ = await loadConfig(configPath);
 
-  // Watch the config file
-
   // Connect to the services
+
+  // Watch the config file
 
   // Start the server
   const app = new Hono().basePath("/api");
