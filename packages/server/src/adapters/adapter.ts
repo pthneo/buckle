@@ -20,7 +20,6 @@ export abstract class Adapter<T, C extends ServiceConfig> {
   abstract connect(): void;
   abstract disconnect(): Promise<void>;
   abstract checkHealth(): Promise<boolean>;
-  abstract onConfigChange(config: C): void;
 
   /**
    * Return the client instance of the adapter

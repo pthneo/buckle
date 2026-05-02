@@ -28,7 +28,11 @@
       "recommended": true,
       "style": {
         "noEnum": "off",
-        "useConsistentTypeDefinitions": "off"
+        "useConsistentTypeDefinitions": "off",
+        "noNonNullAssertion": "off"
+      },
+      "performance": {
+        "noBarrelFile": "off"
       }
     }
   },

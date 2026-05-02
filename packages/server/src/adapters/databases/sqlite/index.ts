@@ -43,14 +43,4 @@ export class SQLiteAdapter extends Adapter<SQL, SQLiteConfig> {
       await this.client.close();
     }
   }
-
-  /**
-   * On config change, disconnect from the database, update the config, and reconnect.
-   */
-  async onConfigChange(config: SQLiteConfig): Promise<void> {
-    await this.disconnect();
-    this.config = config;
-    this.connect();
-    await this.checkHealth();
-  }
 }

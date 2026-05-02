@@ -1,7 +1,7 @@
 import { z } from "zod";
+import { databaseConfigSchema } from "../adapters";
 import { appConfigSchema } from "../adapters/apps/schema";
 import { cacheConfigSchema } from "../adapters/caches/schema";
-import { databaseConfigSchema } from "../adapters/databases/schema";
 import { objectStorageConfigSchema } from "../adapters/object-stores/schema";
 import { queueConfigSchema } from "../adapters/queues/schema";
 import { searchEngineConfigSchema } from "../adapters/search-engines/schema";

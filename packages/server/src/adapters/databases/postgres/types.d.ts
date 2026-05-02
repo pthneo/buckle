@@ -24,4 +24,3 @@ type PostgresConnectionOptions = {
   tls: boolean;
   username: string;
 };
-s;

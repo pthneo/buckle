@@ -44,16 +44,4 @@ export class PostgresAdapter extends Adapter<SQL, PostgresConfig> {
       await this.client.close();
     }
   }
-
-  /**
-   * On config change, disconnect from the database, update the config, and connect to the database
-   *
-   * @param config The new config
-   */
-  async onConfigChange(config: PostgresConfig): Promise<void> {
-    await this.disconnect();
-    this.config = config;
-    this.connect();
-    await this.checkHealth();
-  }
 }
