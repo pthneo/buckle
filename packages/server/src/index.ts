@@ -66,11 +66,10 @@ async function main() {
     port,
     fetch: app.fetch,
     routes: {
-      // Serve index.html for all unmatched routes.
-      "/": index
+      // Serve index.html for all unmatched routes (SPA client-side routing).
+      "/*": index
     },
-    // TODO: Remove
-    development: {
+    development: process.env.NODE_ENV !== "production" && {
       hmr: true,
       console: true
     }

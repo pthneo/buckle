@@ -7,7 +7,12 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["!dist", "!node_modules", "!.changeset"]
+    "includes": [
+      "!dist",
+      "!node_modules",
+      "!.changeset",
+      "!packages/server/src/app/components/ui"
+    ]
   },
   "formatter": {
     "enabled": true,

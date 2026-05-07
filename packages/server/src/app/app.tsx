@@ -1,24 +1,35 @@
-import { APITester } from "./APITester";
-import "./index.css";
+import { TooltipProvider } from "@app/components/ui/tooltip";
+import Analytics from "@app/pages/Analytics";
+import Dashboard from "@app/pages/Dashboard";
+import Inspector from "@app/pages/Inspector";
+import Logs from "@app/pages/Logs";
+import Services from "@app/pages/Services";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "sonner";
+import { DashboardLayout } from "@/app/components/dashboard-layout";
+import NotFound from "@/app/pages/not-found";
 
-import logo from "./logo.svg";
-import reactLogo from "./react.svg";
+const queryClient = new QueryClient();
 
 export function App() {
   return (
-    <div className="app">
-      <div className="logo-container">
-        <img alt="Bun Logo" className="logo bun-logo" height={32} src={logo} width={32} />
-        <img alt="React Logo" className="logo react-logo" height={32} src={reactLogo} width={32} />
-      </div>
-
-      <h1>Bun + React</h1>
-      <p>
-        Edit <code>src/App.tsx</code> and save to test HMR
-      </p>
-      <APITester />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <BrowserRouter>
+          <DashboardLayout>
+            <Routes>
+              <Route element={<Dashboard />} path="/" />
+              <Route element={<Services />} path="/services" />
+              <Route element={<Logs />} path="/logs" />
+              <Route element={<Analytics />} path="/analytics" />
+              <Route element={<Inspector />} path="/inspector" />
+              <Route element={<NotFound />} path="*" />
+            </Routes>
+          </DashboardLayout>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 }
-
-export default App;

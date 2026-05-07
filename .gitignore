@@ -3,4 +3,3 @@ node_modules/
 .env
 PLAN.md
 IDEAS.md
-packages/server/src/_app
