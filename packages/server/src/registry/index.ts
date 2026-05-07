@@ -2,7 +2,7 @@ import { randomUUIDv7 } from "bun";
 import { createDatabaseAdapter } from "@/adapters";
 
 // The categories of services
-const CATEGORIES = [
+export const CATEGORIES = [
   "databases",
   "caches",
   "queues",
@@ -10,10 +10,7 @@ const CATEGORIES = [
   "object-stores",
   "apps",
   "webhooks"
-] as const;
-
-// The type of the categories
-type Category = (typeof CATEGORIES)[number];
+] as const satisfies readonly Category[];
 
 /**
  * The service registry stores and manages the connections to each of the services.
@@ -40,6 +37,7 @@ export class ServiceRegistry {
 
       this.services.get("databases")!.set(id, {
         adapter,
+        id,
         name: database.name,
         description: database.description,
         type: database.type,
@@ -79,6 +77,43 @@ export class ServiceRegistry {
   }
 
   /**
+   * Returns aggregate health and category counts for all services in the registry
+   *
+   * @returns Metadata for the registry
+   */
+  getMetadata(): Metadata {
+    const categories = CATEGORIES.reduce(
+      (acc, category) => {
+        acc[category] = 0;
+        return acc;
+      },
+      {} as Metadata["categories"]
+    );
+
+    let healthy = 0;
+    let unhealthy = 0;
+    let unknown = 0;
+    let total = 0;
+
+    for (const category of CATEGORIES) {
+      const bucket = this.services.get(category)!;
+      for (const service of bucket.values()) {
+        total++;
+        categories[category] = (categories[category] ?? 0) + 1;
+        if (service.status === "healthy") {
+          healthy++;
+        } else if (service.status === "unhealthy") {
+          unhealthy++;
+        } else {
+          unknown++;
+        }
+      }
+    }
+
+    return { healthy, unhealthy, unknown, total, categories };
+  }
+
+  /**
    * Returns all the services in a category
    *
    * @param category - The category of the services
@@ -98,7 +133,6 @@ export class ServiceRegistry {
   getService(category: (typeof CATEGORIES)[number], id: string): Service | undefined {
     return this.services.get(category)?.get(id);
   }
-
   /**
    * Disposes of the service registry and disconnects from all the services
    *

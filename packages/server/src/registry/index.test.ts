@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { DEFAULT_CONFIG_VERSION } from "@/config";
-import { ServiceRegistry } from "@/registry";
+import { CATEGORIES, ServiceRegistry } from "@/registry";
 
 /**
  * Creates a base config for tests then overrides with values provided
@@ -42,19 +42,7 @@ function sqliteDatabase(name: string): SQLiteConfig {
  * @returns The ids of the databases in the registry
  */
 function databaseEntryIds(registry: ServiceRegistry): string[] {
-  type BucketKey =
-    | "apps"
-    | "caches"
-    | "databases"
-    | "object-stores"
-    | "queues"
-    | "search-engines"
-    | "webhooks";
-
-  const buckets = (registry as unknown as { services: Map<BucketKey, Map<string, Service>> })
-    .services;
-  const bucket = buckets.get("databases");
-  return bucket ? [...bucket.keys()] : [];
+  return registry.getCategory("databases").map((s) => s.id);
 }
 
 describe("ServiceRegistry", () => {
@@ -129,6 +117,30 @@ describe("ServiceRegistry", () => {
     registry.connect();
     await registry.disconnect();
 
-    expect(registry.getCategory("databases")).toEqual([]);
+    for (const category of CATEGORIES) {
+      expect(registry.getCategory(category)).toEqual([]);
+    }
+  });
+
+  test("getMetadata exposes counts for every category and consistent totals", () => {
+    const registry = new ServiceRegistry(
+      baseConfig({
+        databases: [sqliteDatabase("one"), sqliteDatabase("two")]
+      })
+    );
+
+    const meta = registry.getMetadata();
+
+    expect(meta.healthy + meta.unhealthy + meta.unknown).toBe(meta.total);
+    expect(meta.total).toBe(2);
+
+    let fromCategories = 0;
+    for (const category of CATEGORIES) {
+      expect(typeof meta.categories[category]).toBe("number");
+      expect(meta.categories[category]).toBeGreaterThanOrEqual(0);
+      fromCategories += meta.categories[category];
+    }
+    expect(fromCategories).toBe(meta.total);
+    expect(meta.categories.databases).toBe(2);
   });
 });
