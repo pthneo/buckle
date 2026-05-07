@@ -1,14 +1,14 @@
 import { TooltipProvider } from "@app/components/ui/tooltip";
-import Analytics from "@app/pages/Analytics";
-import Dashboard from "@app/pages/Dashboard";
-import Inspector from "@app/pages/Inspector";
-import Logs from "@app/pages/Logs";
-import Services from "@app/pages/Services";
+import BuckleAiPage from "@app/pages/ai";
+import CategoryPage from "@app/pages/category";
+import Dashboard from "@app/pages/dashboard";
+import Logs from "@app/pages/logs";
+import NotFound from "@app/pages/not-found";
+import ServiceInspectPage from "@app/pages/service-inspect";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import { DashboardLayout } from "@/app/components/dashboard-layout";
-import NotFound from "@/app/pages/not-found";
 
 const queryClient = new QueryClient();
 
@@ -21,10 +21,10 @@ export function App() {
           <DashboardLayout>
             <Routes>
               <Route element={<Dashboard />} path="/" />
-              <Route element={<Services />} path="/services" />
+              <Route element={<BuckleAiPage />} path="/ai" />
               <Route element={<Logs />} path="/logs" />
-              <Route element={<Analytics />} path="/analytics" />
-              <Route element={<Inspector />} path="/inspector" />
+              <Route element={<ServiceInspectPage />} path="/:category/:serviceId" />
+              <Route element={<CategoryPage />} path="/:category" />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </DashboardLayout>

@@ -49,6 +49,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "explicit",
     "source.organizeImports.biome": "explicit"
-  },
-  "typescript.preferences.autoImportFileExcludePatterns": ["**/node_modules/**"]
+  }
 }

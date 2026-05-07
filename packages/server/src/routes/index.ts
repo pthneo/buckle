@@ -1,11 +1,13 @@
 import { Hono } from "hono";
-import { databasesRoutes } from "./databases";
+import { CATEGORIES } from "@/registry";
+import { createCategoryRoutes } from "./category";
 
 // Create a router for the API
 const api = new Hono<AppEnv>();
 
-// Define API routes`
-api.route("/databases", databasesRoutes);
+for (const category of CATEGORIES) {
+  api.route(`/${category}`, createCategoryRoutes(category));
+}
 
 /**
  * GET /api/health

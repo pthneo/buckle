@@ -39,6 +39,30 @@ type SidebarContextProps = {
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
 
+/** Mirrors desktop shell data-* attrs so `SidebarGroup` and descendants can use `data-[collapsible=icon]:` etc. */
+type SidebarChromeContextValue = {
+  collapsible: "" | "offcanvas" | "icon";
+  side: "left" | "right";
+  variant: "sidebar" | "floating" | "inset";
+  state: "expanded" | "collapsed";
+};
+
+const SidebarChromeContext = React.createContext<SidebarChromeContextValue | null>(
+  null
+);
+
+function SidebarChromeProvider({
+  children,
+  value
+}: {
+  children: React.ReactNode;
+  value: SidebarChromeContextValue;
+}) {
+  return (
+    <SidebarChromeContext.Provider value={value}>{children}</SidebarChromeContext.Provider>
+  );
+}
+
 function useSidebar() {
   const context = React.useContext(SidebarContext);
   if (!context) {
@@ -166,7 +190,16 @@ function Sidebar({
         data-slot="sidebar"
         {...props}
       >
-        {children}
+        <SidebarChromeProvider
+          value={{
+            collapsible: "",
+            side,
+            state: "expanded",
+            variant
+          }}
+        >
+          {children}
+        </SidebarChromeProvider>
       </div>
     );
   }
@@ -191,16 +224,34 @@ function Sidebar({
             <SheetTitle>Sidebar</SheetTitle>
             <SheetDescription>Displays the mobile sidebar.</SheetDescription>
           </SheetHeader>
-          <div className="flex h-full w-full flex-col">{children}</div>
+          <div className="flex h-full w-full flex-col">
+            <SidebarChromeProvider
+              value={{
+                collapsible: "",
+                side,
+                state: openMobile ? "expanded" : "collapsed",
+                variant
+              }}
+            >
+              {children}
+            </SidebarChromeProvider>
+          </div>
         </SheetContent>
       </Sheet>
     );
   }
 
+  const chromeValue: SidebarChromeContextValue = {
+    collapsible: state === "collapsed" ? collapsible : "",
+    side,
+    state,
+    variant
+  };
+
   return (
     <div
       className="group peer hidden text-sidebar-foreground md:block"
-      data-collapsible={state === "collapsed" ? collapsible : ""}
+      data-collapsible={chromeValue.collapsible}
       data-side={side}
       data-slot="sidebar"
       data-state={state}
@@ -236,7 +287,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
         >
-          {children}
+          <SidebarChromeProvider value={chromeValue}>{children}</SidebarChromeProvider>
         </div>
       </div>
     </div>
@@ -362,11 +413,17 @@ function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
+  const chrome = React.useContext(SidebarChromeContext);
+
   return (
     <div
-      className={cn("relative flex w-full min-w-0 flex-col p-2", className)}
+      className={cn("group/sidebar-group relative flex w-full min-w-0 flex-col p-2", className)}
+      data-collapsible={chrome?.collapsible}
       data-sidebar="group"
+      data-side={chrome?.side}
       data-slot="sidebar-group"
+      data-state={chrome?.state}
+      data-variant={chrome?.variant}
       {...props}
     />
   );

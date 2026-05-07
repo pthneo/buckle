@@ -54,7 +54,7 @@ async function main() {
   const app = new Hono<AppEnv>().basePath("/");
   app.use("*", cors());
   app.use("*", logger()); // TODO: Check security
-  app.use("/api", async (c, next) => {
+  app.use("/api/*", async (c, next) => {
     c.set("services", registry);
     await next();
   });
@@ -64,10 +64,9 @@ async function main() {
   console.log(`Server running on port ${port}`);
   serve({
     port,
-    fetch: app.fetch,
     routes: {
-      // Serve index.html for all unmatched routes (SPA client-side routing).
-      "/*": index
+      "/*": index,
+      "/api/*": app.fetch
     },
     development: process.env.NODE_ENV !== "production" && {
       hmr: true,

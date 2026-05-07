@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "dev": "bun --hot src/index.ts",
+    "build:css": "bunx @tailwindcss/cli -i ./src/app/index.css -o ./src/app/dist.css",
     "build": "bun build src/index.ts --outdir dist --target bun --minify --sourcemap=external",
     "test": "bun test",
     "typecheck": "tsc --noEmit"

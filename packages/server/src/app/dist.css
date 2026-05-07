@@ -1,14 +1,12 @@
 /*! tailwindcss v4.2.4 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 @layer theme {
   :root,
   :host {
-    --font-sans: "Inter", sans-serif;
-    --font-mono:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
+    --font-sans: "JetBrains Mono", monospace;
+    --font-mono: "JetBrains Mono", monospace;
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
