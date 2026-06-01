@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@app/components/ui/card";
 import {
   Bar,
   BarChart,
@@ -8,20 +7,21 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis
+  YAxis,
 } from "recharts";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 
 const requestData = [
   { name: "api-server", requests: 2400, errors: 24 },
   { name: "postgres", requests: 1800, errors: 5 },
   { name: "redis", requests: 5200, errors: 12 },
-  { name: "worker-1", requests: 800, errors: 3 }
+  { name: "worker-1", requests: 800, errors: 3 },
 ];
 
 const timelineData = Array.from({ length: 24 }, (_, i) => ({
   hour: `${i}:00`,
   latency: Math.floor(Math.random() * 100) + 10,
-  throughput: Math.floor(Math.random() * 500) + 100
+  throughput: Math.floor(Math.random() * 500) + 100,
 }));
 
 export default function Analytics() {
@@ -50,7 +50,7 @@ export default function Analytics() {
                     background: "hsl(0 0% 9%)",
                     border: "1px solid hsl(0 0% 14.9%)",
                     color: "hsl(0 0% 98%)",
-                    fontSize: 12
+                    fontSize: 12,
                   }}
                 />
                 <Bar dataKey="requests" fill="hsl(38 92% 50%)" radius={[0, 0, 0, 0]} />
@@ -77,7 +77,7 @@ export default function Analytics() {
                     background: "hsl(0 0% 9%)",
                     border: "1px solid hsl(0 0% 14.9%)",
                     color: "hsl(0 0% 98%)",
-                    fontSize: 12
+                    fontSize: 12,
                   }}
                 />
                 <Line
@@ -110,7 +110,7 @@ export default function Analytics() {
                   background: "hsl(0 0% 9%)",
                   border: "1px solid hsl(0 0% 14.9%)",
                   color: "hsl(0 0% 98%)",
-                  fontSize: 12
+                  fontSize: 12,
                 }}
               />
               <Line

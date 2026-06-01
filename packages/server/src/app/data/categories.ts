@@ -28,11 +28,11 @@ export const categoryQueries = {
   list: (category: Category) =>
     queryOptions({
       queryKey: ["category", category],
-      queryFn: () => fetchCategoryList(category)
+      queryFn: () => fetchCategoryList(category),
     }),
   detail: (category: Category, id: string) =>
     queryOptions({
       queryKey: ["category", category, id],
-      queryFn: () => fetchCategoryDetail(category, id)
-    })
+      queryFn: () => fetchCategoryDetail(category, id),
+    }),
 };

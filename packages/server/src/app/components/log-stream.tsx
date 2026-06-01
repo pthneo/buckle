@@ -1,15 +1,15 @@
-import { Button } from "@app/components/ui/button";
-import { Input } from "@app/components/ui/input";
+import { Pause, Play } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
-} from "@app/components/ui/select";
-import { cn } from "@app/lib/utils";
-import { Pause, Play } from "lucide-react";
-import { useMemo, useState } from "react";
+  SelectValue,
+} from "@/app/components/ui/select";
+import { cn } from "@/app/lib/utils";
 
 export type LogEntry = {
   id: string;
@@ -27,7 +27,7 @@ const GLOBAL_MOCK_LOGS: LogEntry[] = [
     serviceName: "api-server",
     level: "info",
     message: "Server started on port 3000",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   },
   {
     id: "2",
@@ -35,7 +35,7 @@ const GLOBAL_MOCK_LOGS: LogEntry[] = [
     serviceName: "postgres",
     level: "info",
     message: "Connection pool initialized (max: 20)",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   },
   {
     id: "3",
@@ -43,7 +43,7 @@ const GLOBAL_MOCK_LOGS: LogEntry[] = [
     serviceName: "redis",
     level: "warn",
     message: "Memory usage above 80% threshold",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   },
   {
     id: "4",
@@ -51,7 +51,7 @@ const GLOBAL_MOCK_LOGS: LogEntry[] = [
     serviceName: "api-server",
     level: "error",
     message: "ECONNREFUSED 127.0.0.1:5432 — retrying in 5s",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   },
   {
     id: "5",
@@ -59,15 +59,15 @@ const GLOBAL_MOCK_LOGS: LogEntry[] = [
     serviceName: "worker-1",
     level: "debug",
     message: "Processing job queue batch #1842",
-    timestamp: new Date().toISOString()
-  }
+    timestamp: new Date().toISOString(),
+  },
 ];
 
 const levelColors: Record<string, string> = {
   info: "text-foreground",
   warn: "text-chart-5",
   error: "text-destructive",
-  debug: "text-muted-foreground"
+  debug: "text-muted-foreground",
 };
 
 function mockLogsForService(serviceId: string, serviceName: string): LogEntry[] {
@@ -79,7 +79,7 @@ function mockLogsForService(serviceId: string, serviceName: string): LogEntry[] 
       serviceName,
       level: "info",
       message: "Adapter connected.",
-      timestamp: ts
+      timestamp: ts,
     },
     {
       id: `${serviceId}-b`,
@@ -87,7 +87,7 @@ function mockLogsForService(serviceId: string, serviceName: string): LogEntry[] 
       serviceName,
       level: "info",
       message: "Health check completed successfully.",
-      timestamp: ts
+      timestamp: ts,
     },
     {
       id: `${serviceId}-c`,
@@ -95,8 +95,8 @@ function mockLogsForService(serviceId: string, serviceName: string): LogEntry[] 
       serviceName,
       level: "debug",
       message: "Polling configuration (stub log stream).",
-      timestamp: ts
-    }
+      timestamp: ts,
+    },
   ];
 }
 

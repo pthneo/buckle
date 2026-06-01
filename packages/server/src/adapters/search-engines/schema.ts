@@ -9,5 +9,5 @@ import { typesenseConfigSchema } from "./typesense/schema";
 export const searchEngineConfigSchema = z.discriminatedUnion("type", [
   elasticsearchConfigSchema,
   typesenseConfigSchema,
-  meilisearchConfigSchema
+  meilisearchConfigSchema,
 ]);

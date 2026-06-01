@@ -9,5 +9,5 @@ import { sqliteConfigSchema } from "./sqlite/schema";
 export const databaseConfigSchema = z.discriminatedUnion("type", [
   postgresConfigSchema,
   mysqlConfigSchema,
-  sqliteConfigSchema
+  sqliteConfigSchema,
 ]);

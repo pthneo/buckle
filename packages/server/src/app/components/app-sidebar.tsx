@@ -1,3 +1,5 @@
+import { type Icon, SparkleIcon, TerminalIcon } from "@phosphor-icons/react";
+import { NavLink } from "@/app/components/nav-link";
 import {
   Sidebar,
   SidebarContent,
@@ -7,10 +9,8 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem
-} from "@app/components/ui/sidebar";
-import { type Icon, SparkleIcon, TerminalIcon } from "@phosphor-icons/react";
-import { NavLink } from "@/app/components/nav-link";
+  SidebarMenuItem,
+} from "@/app/components/ui/sidebar";
 import { CATEGORIES, ICONS, LABELS } from "../data";
 
 const navItems: { title: string; url: string; icon: Icon }[] = [
@@ -18,9 +18,9 @@ const navItems: { title: string; url: string; icon: Icon }[] = [
   ...CATEGORIES.map((category) => ({
     title: LABELS[category],
     url: `/${category}`,
-    icon: ICONS[category]
+    icon: ICONS[category],
   })),
-  { title: "Buckle AI", url: "/ai", icon: SparkleIcon }
+  { title: "Buckle AI", url: "/ai", icon: SparkleIcon },
 ];
 
 export function AppSidebar() {

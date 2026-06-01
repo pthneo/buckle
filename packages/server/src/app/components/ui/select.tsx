@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@app/lib/utils";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { CaretDownIcon, CaretUpIcon, CheckIcon } from "@phosphor-icons/react";
 import type * as React from "react";
+import { cn } from "@/app/lib/utils";
 
 const Select = SelectPrimitive.Root;
 
@@ -185,5 +185,5 @@ export {
   SelectScrollUpButton,
   SelectSeparator,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 };

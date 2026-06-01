@@ -11,5 +11,5 @@ export const elasticsearchConfigSchema = z.object({
   password: z.string().optional(),
   type: z.literal("elasticsearch"),
   url: z.string(),
-  username: z.string().optional()
+  username: z.string().optional(),
 });

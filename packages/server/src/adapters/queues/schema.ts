@@ -11,5 +11,5 @@ export const queueConfigSchema = z.discriminatedUnion("type", [
   redisQueueConfigSchema,
   sqsConfigSchema,
   rabbitmqConfigSchema,
-  kafkaConfigSchema
+  kafkaConfigSchema,
 ]);

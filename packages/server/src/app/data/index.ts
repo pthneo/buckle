@@ -10,7 +10,7 @@ import {
   LaptopIcon,
   LightningIcon,
   MagnifyingGlassIcon,
-  WebhooksLogoIcon
+  WebhooksLogoIcon,
 } from "@phosphor-icons/react";
 
 // The categories of services
@@ -21,7 +21,7 @@ export const CATEGORIES = [
   "search-engines",
   "object-stores",
   "apps",
-  "webhooks"
+  "webhooks",
 ] as const satisfies readonly Category[];
 
 // The icons for the categories
@@ -32,7 +32,7 @@ export const ICONS: Record<Category, Icon> = {
   "search-engines": MagnifyingGlassIcon,
   "object-stores": HardDriveIcon,
   queues: ArrowsLeftRightIcon,
-  webhooks: WebhooksLogoIcon
+  webhooks: WebhooksLogoIcon,
 };
 
 // The labels for the categories
@@ -43,7 +43,7 @@ export const LABELS: Record<Category, string> = {
   "search-engines": "Search Engines",
   "object-stores": "Object Stores",
   queues: "Queues",
-  webhooks: "Webhooks"
+  webhooks: "Webhooks",
 };
 
 export function isCategory(slug: string): slug is Category {

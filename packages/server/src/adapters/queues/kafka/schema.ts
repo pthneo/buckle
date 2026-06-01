@@ -8,5 +8,5 @@ import { z } from "zod";
 export const kafkaConfigSchema = z.object({
   brokers: z.array(z.string()),
   name: z.string(),
-  type: z.literal("kafka")
+  type: z.literal("kafka"),
 });

@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@app/components/ui/button";
-import { cn } from "@app/lib/utils";
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { XIcon } from "@phosphor-icons/react";
 import type * as React from "react";
+import { Button } from "@/app/components/ui/button";
+import { cn } from "@/app/lib/utils";
 
 function Sheet({ ...props }: SheetPrimitive.Root.Props) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
@@ -114,11 +114,11 @@ function SheetDescription({ className, ...props }: SheetPrimitive.Description.Pr
 
 export {
   Sheet,
-  SheetTrigger,
   SheetClose,
   SheetContent,
-  SheetHeader,
+  SheetDescription,
   SheetFooter,
+  SheetHeader,
   SheetTitle,
-  SheetDescription
+  SheetTrigger,
 };

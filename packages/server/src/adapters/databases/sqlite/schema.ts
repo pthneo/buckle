@@ -12,7 +12,7 @@ const sqliteConnectionOptionsSchema = z.object({
   create: z.boolean().optional(),
   readwrite: z.boolean().optional(),
   strict: z.boolean().optional(),
-  safeIntegers: z.boolean().optional()
+  safeIntegers: z.boolean().optional(),
 });
 
 /**
@@ -28,5 +28,5 @@ const sqliteConnectionSchema = z.union([z.string(), sqliteConnectionOptionsSchem
 export const sqliteConfigSchema = z.object({
   connection: sqliteConnectionSchema,
   name: z.string(),
-  type: z.literal("sqlite")
+  type: z.literal("sqlite"),
 });

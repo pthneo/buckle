@@ -1,37 +1,37 @@
-import { Button } from "@app/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@app/components/ui/card";
-import { Input } from "@app/components/ui/input";
+import { Database, HardDrive, Play, Search, Zap } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/app/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
+import { Input } from "@/app/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
-} from "@app/components/ui/select";
+  SelectValue,
+} from "@/app/components/ui/select";
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
-} from "@app/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@app/components/ui/tabs";
-import { Textarea } from "@app/components/ui/textarea";
-import { useServices } from "@app/store/services";
-import { Database, HardDrive, Play, Search, Zap } from "lucide-react";
-import { useState } from "react";
+  TableRow,
+} from "@/app/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
+import { Textarea } from "@/app/components/ui/textarea";
+import { useServices } from "@/app/store/services";
 
 const MOCK_DB_RESULTS = [
   { id: 1, name: "users", email: "admin@localhost", role: "admin" },
   { id: 2, name: "alice", email: "alice@localhost", role: "user" },
-  { id: 3, name: "bob", email: "bob@localhost", role: "user" }
+  { id: 3, name: "bob", email: "bob@localhost", role: "user" },
 ];
 
 const MOCK_REDIS_KEYS = [
   { key: "session:abc123", type: "string", ttl: 3600, value: '{"userId":"1","role":"admin"}' },
   { key: "cache:users:list", type: "hash", ttl: 300, value: "{...}" },
-  { key: "queue:jobs", type: "list", ttl: -1, value: "[3 items]" }
+  { key: "queue:jobs", type: "list", ttl: -1, value: "[3 items]" },
 ];
 
 export default function Inspector() {

@@ -17,6 +17,6 @@ export const metadataQueries = {
   all: () =>
     queryOptions({
       queryKey: ["metadata"],
-      queryFn: () => fetchMetadata()
-    })
+      queryFn: () => fetchMetadata(),
+    }),
 };

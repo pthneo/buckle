@@ -6,7 +6,7 @@ export type RegisteredCategory = (typeof CATEGORIES)[number];
 function toServiceResult(service: Service): ServiceResult {
   return {
     ...service,
-    adapter: undefined
+    adapter: undefined,
   };
 }
 

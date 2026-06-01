@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@app/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { ICONS, LABELS, metadataQueries } from "@/app/data";
 import { Spinner } from "../components/ui/spinner";
 

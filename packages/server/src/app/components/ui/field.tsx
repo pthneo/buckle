@@ -1,8 +1,8 @@
-import { Label } from "@app/components/ui/label";
-import { Separator } from "@app/components/ui/separator";
-import { cn } from "@app/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { useMemo } from "react";
+import { Label } from "@/app/components/ui/label";
+import { Separator } from "@/app/components/ui/separator";
+import { cn } from "@/app/lib/utils";
 
 function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
   return (
@@ -55,12 +55,12 @@ const fieldVariants = cva("group/field flex w-full gap-2 data-[invalid=true]:tex
       horizontal:
         "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
       responsive:
-        "@md/field-group:flex-row flex-col @md/field-group:items-center *:w-full @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px"
-    }
+        "@md/field-group:flex-row flex-col @md/field-group:items-center *:w-full @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+    },
   },
   defaultVariants: {
-    orientation: "vertical"
-  }
+    orientation: "vertical",
+  },
 });
 
 function Field({
@@ -209,13 +209,13 @@ function FieldError({
 
 export {
   Field,
-  FieldLabel,
+  FieldContent,
   FieldDescription,
   FieldError,
   FieldGroup,
+  FieldLabel,
   FieldLegend,
   FieldSeparator,
   FieldSet,
-  FieldContent,
-  FieldTitle
+  FieldTitle,
 };

@@ -24,7 +24,7 @@ export async function loadConfig(path: string, previous?: Config): Promise<Confi
       objectStorages: [],
       queues: [],
       searchEngines: [],
-      webhooks: []
+      webhooks: [],
     };
   }
 

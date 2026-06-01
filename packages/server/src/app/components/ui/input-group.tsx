@@ -1,11 +1,11 @@
 "use client";
 
-import { Button } from "@app/components/ui/button";
-import { Input } from "@app/components/ui/input";
-import { Textarea } from "@app/components/ui/textarea";
-import { cn } from "@app/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Textarea } from "@/app/components/ui/textarea";
+import { cn } from "@/app/lib/utils";
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -31,12 +31,12 @@ const inputGroupAddonVariants = cva(
         "block-start":
           "order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2 [.border-b]:pb-2",
         "block-end":
-          "order-last w-full justify-start px-2.5 pb-2 group-has-[>input]/input-group:pb-2 [.border-t]:pt-2"
-      }
+          "order-last w-full justify-start px-2.5 pb-2 group-has-[>input]/input-group:pb-2 [.border-t]:pt-2",
+      },
     },
     defaultVariants: {
-      align: "inline-start"
-    }
+      align: "inline-start",
+    },
   }
 );
 
@@ -68,12 +68,12 @@ const inputGroupButtonVariants = cva("flex items-center gap-2 text-xs shadow-non
       xs: "h-6 gap-1 rounded-none px-1.5 [&>svg:not([class*='size-'])]:size-3.5",
       sm: "gap-1",
       "icon-xs": "size-6 rounded-none p-0 has-[>svg]:p-0",
-      "icon-sm": "size-7 p-0 has-[>svg]:p-0"
-    }
+      "icon-sm": "size-7 p-0 has-[>svg]:p-0",
+    },
   },
   defaultVariants: {
-    size: "xs"
-  }
+    size: "xs",
+  },
 });
 
 function InputGroupButton({
@@ -139,7 +139,7 @@ export {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
-  InputGroupText,
   InputGroupInput,
-  InputGroupTextarea
+  InputGroupText,
+  InputGroupTextarea,
 };

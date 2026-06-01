@@ -11,5 +11,5 @@ export const sqsConfigSchema = z.object({
   region: z.string(),
   secretAccessKey: z.string(),
   type: z.literal("sqs"),
-  url: z.string()
+  url: z.string(),
 });

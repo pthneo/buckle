@@ -6,13 +6,13 @@ const mockClose = mock(() => Promise.resolve());
 mock.module("bun", () => ({
   SQL: class MockSQL {
     close = mockClose;
-  }
+  },
 }));
 
 const sqliteConfig: SQLiteConfig = {
   name: "test-db",
   type: "sqlite",
-  connection: ":memory:"
+  connection: ":memory:",
 };
 
 describe("SQLiteAdapter", () => {
@@ -48,7 +48,7 @@ describe("SQLiteAdapter", () => {
       const fileConfig: SQLiteConfig = {
         name: "file-db",
         type: "sqlite",
-        connection: "/tmp/test.db"
+        connection: "/tmp/test.db",
       };
       const fileAdapter = new SQLiteAdapter(fileConfig);
       fileAdapter.connect();
@@ -62,7 +62,7 @@ describe("SQLiteAdapter", () => {
       const stringAdapter = new SQLiteAdapter({
         name: "str-db",
         type: "sqlite",
-        connection: ":memory:"
+        connection: ":memory:",
       });
       stringAdapter.connect();
       expect(stringAdapter.get()).not.toBeNull();
@@ -111,7 +111,7 @@ describe("SQLiteAdapter", () => {
         Promise.reject(new Error("connection refused"));
       Object.defineProperty(shortTimeoutAdapter, "client", {
         value: failingTemplate,
-        writable: true
+        writable: true,
       });
 
       const healthy = await shortTimeoutAdapter.checkHealth();

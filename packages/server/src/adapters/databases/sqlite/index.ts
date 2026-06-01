@@ -11,7 +11,7 @@ export class SQLiteAdapter extends Adapter<SQL, SQLiteConfig> {
   connect(): void {
     this.client = new SQL({
       adapter: "sqlite",
-      filename: this.config.connection
+      filename: this.config.connection,
     });
   }
 

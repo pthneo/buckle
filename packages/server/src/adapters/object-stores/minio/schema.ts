@@ -12,5 +12,5 @@ export const minioConfigSchema = z.object({
   name: z.string(),
   region: z.string().optional(),
   secretAccessKey: z.string(),
-  type: z.literal("minio")
+  type: z.literal("minio"),
 });

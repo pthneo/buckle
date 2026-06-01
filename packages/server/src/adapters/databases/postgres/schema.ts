@@ -11,7 +11,7 @@ const postgresConnectionOptionsSchema = z.object({
   password: z.string({ error: "Password is required" }),
   port: z.number({ error: "Port is required" }),
   tls: z.boolean({ error: "TLS selection is required" }),
-  username: z.string({ error: "Username is required" })
+  username: z.string({ error: "Username is required" }),
 });
 
 /**
@@ -30,5 +30,5 @@ export const postgresConfigSchema = z.object({
   description: z.string().optional(),
   name: z.string(),
   type: z.literal("postgres"),
-  connection: postgresConnectionSchema
+  connection: postgresConnectionSchema,
 });

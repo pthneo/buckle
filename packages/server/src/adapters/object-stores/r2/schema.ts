@@ -12,5 +12,5 @@ export const r2ConfigSchema = z.object({
   name: z.string(),
   region: z.string().optional(),
   secretAccessKey: z.string(),
-  type: z.literal("r2")
+  type: z.literal("r2"),
 });

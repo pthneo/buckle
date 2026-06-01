@@ -8,5 +8,5 @@ import { z } from "zod";
 export const rabbitmqConfigSchema = z.object({
   name: z.string(),
   type: z.literal("rabbitmq"),
-  url: z.string()
+  url: z.string(),
 });

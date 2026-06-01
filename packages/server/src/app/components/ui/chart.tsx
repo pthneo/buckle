@@ -1,7 +1,7 @@
-import { cn } from "@app/lib/utils";
 import * as React from "react";
 import type { TooltipValueType } from "recharts";
 import * as RechartsPrimitive from "recharts";
+import { cn } from "@/app/lib/utils";
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const;
@@ -97,7 +97,7 @@ ${colorConfig
 }
 `
           )
-          .join("\n")
+          .join("\n"),
       }}
     />
   );
@@ -118,7 +118,7 @@ function ChartTooltipContent({
   formatter,
   color,
   nameKey,
-  labelKey
+  labelKey,
 }: React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
   React.ComponentProps<"div"> & {
     hideLabel?: boolean;
@@ -202,13 +202,13 @@ function ChartTooltipContent({
                               "w-1": indicator === "line",
                               "w-0 border-[1.5px] border-dashed bg-transparent":
                                 indicator === "dashed",
-                              "my-0.5": nestLabel && indicator === "dashed"
+                              "my-0.5": nestLabel && indicator === "dashed",
                             }
                           )}
                           style={
                             {
                               "--color-bg": indicatorColor,
-                              "--color-border": indicatorColor
+                              "--color-border": indicatorColor,
                             } as React.CSSProperties
                           }
                         />
@@ -251,7 +251,7 @@ function ChartLegendContent({
   hideIcon = false,
   payload,
   verticalAlign = "bottom",
-  nameKey
+  nameKey,
 }: React.ComponentProps<"div"> & {
   hideIcon?: boolean;
   nameKey?: string;
@@ -289,7 +289,7 @@ function ChartLegendContent({
                 <div
                   className="h-2 w-2 shrink-0 rounded-[2px]"
                   style={{
-                    backgroundColor: item.color
+                    backgroundColor: item.color,
                   }}
                 />
               )}
@@ -303,7 +303,7 @@ function ChartLegendContent({
 
 function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key: string) {
   if (typeof payload !== "object" || payload === null) {
-    return undefined;
+    return;
   }
 
   const payloadPayload =
@@ -328,9 +328,9 @@ function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key:
 
 export {
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
-  ChartStyle
+  ChartStyle,
+  ChartTooltip,
+  ChartTooltipContent,
 };

@@ -13,5 +13,5 @@ export const valkeyConfigSchema = z.object({
   tls: z.boolean().optional(),
   type: z.literal("valkey"),
   url: z.string().optional(),
-  username: z.string().optional()
+  username: z.string().optional(),
 });

@@ -8,7 +8,7 @@ const validConnectionOptions = {
   password: "secret",
   port: 5432,
   tls: false,
-  username: "admin"
+  username: "admin",
 };
 
 describe("Postgres config schema", () => {
@@ -17,7 +17,7 @@ describe("Postgres config schema", () => {
       const result = postgresConfigSchema.safeParse({
         name: "my-db",
         type: "postgres",
-        connection: validConnectionOptions
+        connection: validConnectionOptions,
       });
       expect(result.success).toBe(true);
     });
@@ -26,7 +26,7 @@ describe("Postgres config schema", () => {
       const result = postgresConfigSchema.safeParse({
         name: "my-db",
         type: "postgres",
-        connection: "postgres://admin:secret@localhost:5432/myapp"
+        connection: "postgres://admin:secret@localhost:5432/myapp",
       });
       expect(result.success).toBe(true);
     });
@@ -36,7 +36,7 @@ describe("Postgres config schema", () => {
         name: "my-db",
         type: "postgres",
         description: "Primary database",
-        connection: validConnectionOptions
+        connection: validConnectionOptions,
       });
       expect(result.success).toBe(true);
       if (result.success) {
@@ -47,7 +47,7 @@ describe("Postgres config schema", () => {
     test("rejects missing name", () => {
       const result = postgresConfigSchema.safeParse({
         type: "postgres",
-        connection: validConnectionOptions
+        connection: validConnectionOptions,
       });
       expect(result.success).toBe(false);
     });
@@ -55,7 +55,7 @@ describe("Postgres config schema", () => {
     test("rejects missing connection", () => {
       const result = postgresConfigSchema.safeParse({
         name: "my-db",
-        type: "postgres"
+        type: "postgres",
       });
       expect(result.success).toBe(false);
     });
@@ -64,7 +64,7 @@ describe("Postgres config schema", () => {
       const result = postgresConfigSchema.safeParse({
         name: "my-db",
         type: "mysql",
-        connection: validConnectionOptions
+        connection: validConnectionOptions,
       });
       expect(result.success).toBe(false);
     });
@@ -75,8 +75,8 @@ describe("Postgres config schema", () => {
         type: "postgres",
         connection: {
           host: "localhost",
-          port: 5432
-        }
+          port: 5432,
+        },
       });
       expect(result.success).toBe(false);
     });
@@ -87,8 +87,8 @@ describe("Postgres config schema", () => {
         type: "postgres",
         connection: {
           ...validConnectionOptions,
-          port: "5432"
-        }
+          port: "5432",
+        },
       });
       expect(result.success).toBe(false);
     });
@@ -97,7 +97,7 @@ describe("Postgres config schema", () => {
       const result = postgresConfigSchema.safeParse({
         name: "my-db",
         type: "postgres",
-        connection: "not-a-url"
+        connection: "not-a-url",
       });
       expect(result.success).toBe(false);
     });

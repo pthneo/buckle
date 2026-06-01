@@ -11,7 +11,7 @@ export class PostgresAdapter extends Adapter<SQL, PostgresConfig> {
   connect(): void {
     this.client = new SQL({
       adapter: "postgres",
-      ...this.config.connection
+      ...this.config.connection,
     });
   }
 

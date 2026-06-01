@@ -18,7 +18,7 @@ function baseConfig(overrides: Partial<Config> = {}): Config {
     searchEngines: [],
     version: DEFAULT_CONFIG_VERSION,
     webhooks: [],
-    ...overrides
+    ...overrides,
   };
 }
 /**
@@ -31,7 +31,7 @@ function sqliteDatabase(name: string): SQLiteConfig {
   return {
     connection: ":memory:",
     name,
-    type: "sqlite"
+    type: "sqlite",
   };
 }
 
@@ -55,7 +55,7 @@ describe("ServiceRegistry", () => {
   test("registers sqlite databases under the databases category", () => {
     const registry = new ServiceRegistry(
       baseConfig({
-        databases: [sqliteDatabase("primary-sqlite")]
+        databases: [sqliteDatabase("primary-sqlite")],
       })
     );
 
@@ -70,7 +70,7 @@ describe("ServiceRegistry", () => {
   test("connect wires adapters so subsequent health checks can succeed", async () => {
     const registry = new ServiceRegistry(
       baseConfig({
-        databases: [sqliteDatabase("live-sqlite")]
+        databases: [sqliteDatabase("live-sqlite")],
       })
     );
 
@@ -89,7 +89,7 @@ describe("ServiceRegistry", () => {
   test("getService returns the registered row when the generated UUID is known", () => {
     const registry = new ServiceRegistry(
       baseConfig({
-        databases: [sqliteDatabase("lookup-sqlite")]
+        databases: [sqliteDatabase("lookup-sqlite")],
       })
     );
 
@@ -110,7 +110,7 @@ describe("ServiceRegistry", () => {
   test("disconnect awaits adapter teardown and clears every category bucket", async () => {
     const registry = new ServiceRegistry(
       baseConfig({
-        databases: [sqliteDatabase("tmp-sqlite")]
+        databases: [sqliteDatabase("tmp-sqlite")],
       })
     );
 
@@ -125,7 +125,7 @@ describe("ServiceRegistry", () => {
   test("getMetadata exposes counts for every category and consistent totals", () => {
     const registry = new ServiceRegistry(
       baseConfig({
-        databases: [sqliteDatabase("one"), sqliteDatabase("two")]
+        databases: [sqliteDatabase("one"), sqliteDatabase("two")],
       })
     );
 

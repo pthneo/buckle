@@ -25,7 +25,7 @@ const configSchema = z.object({
   queues: z.array(queueConfigSchema).optional().default([]),
   searchEngines: z.array(searchEngineConfigSchema).optional().default([]),
   version: z.number().min(MIN_CONFIG_VERSION).max(MAX_CONFIG_VERSION),
-  webhooks: z.array(webhookConfigSchema).optional().default([])
+  webhooks: z.array(webhookConfigSchema).optional().default([]),
 });
 
 /**

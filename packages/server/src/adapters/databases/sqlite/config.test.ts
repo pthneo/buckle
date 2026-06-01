@@ -8,7 +8,7 @@ describe("SQLite config schema", () => {
       const result = sqliteConfigSchema.safeParse({
         name: "my-db",
         type: "sqlite",
-        connection: "/data/app.db"
+        connection: "/data/app.db",
       });
       expect(result.success).toBe(true);
     });
@@ -17,7 +17,7 @@ describe("SQLite config schema", () => {
       const result = sqliteConfigSchema.safeParse({
         name: "in-memory",
         type: "sqlite",
-        connection: ":memory:"
+        connection: ":memory:",
       });
       expect(result.success).toBe(true);
     });
@@ -30,8 +30,8 @@ describe("SQLite config schema", () => {
           filename: "/data/app.db",
           readonly: false,
           create: true,
-          readwrite: true
-        }
+          readwrite: true,
+        },
       });
       expect(result.success).toBe(true);
     });
@@ -47,8 +47,8 @@ describe("SQLite config schema", () => {
           create: false,
           readwrite: false,
           strict: true,
-          safeIntegers: true
-        }
+          safeIntegers: true,
+        },
       });
       expect(result.success).toBe(true);
     });
@@ -57,7 +57,7 @@ describe("SQLite config schema", () => {
       const result = sqliteConfigSchema.safeParse({
         name: "my-db",
         type: "sqlite",
-        connection: {}
+        connection: {},
       });
       expect(result.success).toBe(true);
     });
@@ -65,7 +65,7 @@ describe("SQLite config schema", () => {
     test("rejects missing name", () => {
       const result = sqliteConfigSchema.safeParse({
         type: "sqlite",
-        connection: "/data/app.db"
+        connection: "/data/app.db",
       });
       expect(result.success).toBe(false);
     });
@@ -73,7 +73,7 @@ describe("SQLite config schema", () => {
     test("rejects missing connection", () => {
       const result = sqliteConfigSchema.safeParse({
         name: "my-db",
-        type: "sqlite"
+        type: "sqlite",
       });
       expect(result.success).toBe(false);
     });
@@ -82,7 +82,7 @@ describe("SQLite config schema", () => {
       const result = sqliteConfigSchema.safeParse({
         name: "my-db",
         type: "postgres",
-        connection: "/data/app.db"
+        connection: "/data/app.db",
       });
       expect(result.success).toBe(false);
     });
@@ -92,8 +92,8 @@ describe("SQLite config schema", () => {
         name: "my-db",
         type: "sqlite",
         connection: {
-          readonly: "yes"
-        }
+          readonly: "yes",
+        },
       });
       expect(result.success).toBe(false);
     });
@@ -134,7 +134,7 @@ connection:
         expect(result.data.connection).toMatchObject({
           filename: "/var/data/app.db",
           readonly: false,
-          create: true
+          create: true,
         });
       }
     });

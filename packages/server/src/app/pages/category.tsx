@@ -1,15 +1,15 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@app/components/ui/card";
-import { cn } from "@app/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Spinner } from "@/app/components/ui/spinner";
 import { categoryQueries, ICONS, isCategory, LABELS } from "@/app/data";
+import { cn } from "@/app/lib/utils";
 import NotFound from "@/app/pages/not-found";
 
 const statusTone: Record<ServiceResult["status"], string> = {
   healthy: "text-chart-2",
   unhealthy: "text-destructive",
-  unknown: "text-muted-foreground"
+  unknown: "text-muted-foreground",
 };
 
 function CategoryBrowse({ category }: { category: Category }) {

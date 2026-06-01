@@ -21,7 +21,7 @@ export function createDatabaseAdapter(
     case "sqlite":
       return new SQLiteAdapter(config as SQLiteConfig);
     default:
-      return undefined;
+      return;
   }
 }
 

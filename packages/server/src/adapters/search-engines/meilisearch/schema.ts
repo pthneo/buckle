@@ -9,5 +9,5 @@ export const meilisearchConfigSchema = z.object({
   apiKey: z.string().optional(),
   name: z.string(),
   type: z.literal("meilisearch"),
-  url: z.string()
+  url: z.string(),
 });

@@ -7,5 +7,5 @@ import { valkeyConfigSchema } from "./valkey/schema";
  */
 export const cacheConfigSchema = z.discriminatedUnion("type", [
   redisConfigSchema,
-  valkeyConfigSchema
+  valkeyConfigSchema,
 ]);

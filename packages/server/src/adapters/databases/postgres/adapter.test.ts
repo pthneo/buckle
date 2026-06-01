@@ -6,7 +6,7 @@ const mockClose = mock(() => Promise.resolve());
 mock.module("bun", () => ({
   SQL: class MockSQL {
     close = mockClose;
-  }
+  },
 }));
 
 const validConnectionOptions: PostgresConnectionOptions = {
@@ -15,19 +15,19 @@ const validConnectionOptions: PostgresConnectionOptions = {
   password: "secret",
   port: 5432,
   tls: false,
-  username: "admin"
+  username: "admin",
 };
 
 const postgresConfig: PostgresConfig = {
   name: "test-pg",
   type: "postgres",
-  connection: validConnectionOptions
+  connection: validConnectionOptions,
 };
 
 const postgresUrlConfig: PostgresConfig = {
   name: "test-pg-url",
   type: "postgres",
-  connection: new URL("postgres://admin:secret@localhost:5432/testdb")
+  connection: new URL("postgres://admin:secret@localhost:5432/testdb"),
 };
 
 describe("PostgresAdapter", () => {
@@ -100,7 +100,7 @@ describe("PostgresAdapter", () => {
         Promise.reject(new Error("connection refused"));
       Object.defineProperty(shortTimeoutAdapter, "client", {
         value: failingTemplate,
-        writable: true
+        writable: true,
       });
 
       const healthy = await shortTimeoutAdapter.checkHealth();

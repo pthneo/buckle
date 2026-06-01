@@ -19,7 +19,7 @@ function emptyConfig(): Config {
     queues: [],
     searchEngines: [],
     version: DEFAULT_CONFIG_VERSION,
-    webhooks: []
+    webhooks: [],
   };
 }
 

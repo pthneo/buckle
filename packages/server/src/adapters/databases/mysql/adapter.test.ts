@@ -6,7 +6,7 @@ const mockClose = mock(() => Promise.resolve());
 mock.module("bun", () => ({
   SQL: class MockSQL {
     close = mockClose;
-  }
+  },
 }));
 
 const validConnectionOptions: MySQLConnectionOptions = {
@@ -15,19 +15,19 @@ const validConnectionOptions: MySQLConnectionOptions = {
   password: "secret",
   port: 3306,
   tls: false,
-  username: "admin"
+  username: "admin",
 };
 
 const mysqlConfig: MySQLConfig = {
   name: "test-mysql",
   type: "mysql",
-  connection: validConnectionOptions
+  connection: validConnectionOptions,
 };
 
 const mysqlUrlConfig: MySQLConfig = {
   name: "test-mysql-url",
   type: "mysql",
-  connection: new URL("mysql://admin:secret@localhost:3306/testdb")
+  connection: new URL("mysql://admin:secret@localhost:3306/testdb"),
 };
 
 describe("MySQLAdapter", () => {
@@ -100,7 +100,7 @@ describe("MySQLAdapter", () => {
         Promise.reject(new Error("connection refused"));
       Object.defineProperty(shortTimeoutAdapter, "client", {
         value: failingTemplate,
-        writable: true
+        writable: true,
       });
 
       const healthy = await shortTimeoutAdapter.checkHealth();

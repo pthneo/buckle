@@ -8,7 +8,7 @@ const validConnectionOptions = {
   password: "secret",
   port: 3306,
   tls: false,
-  username: "admin"
+  username: "admin",
 };
 
 describe("MySQL config schema", () => {
@@ -17,7 +17,7 @@ describe("MySQL config schema", () => {
       const result = mysqlConfigSchema.safeParse({
         name: "my-db",
         type: "mysql",
-        connection: validConnectionOptions
+        connection: validConnectionOptions,
       });
       expect(result.success).toBe(true);
     });
@@ -26,7 +26,7 @@ describe("MySQL config schema", () => {
       const result = mysqlConfigSchema.safeParse({
         name: "my-db",
         type: "mysql",
-        connection: "mysql://admin:secret@localhost:3306/myapp"
+        connection: "mysql://admin:secret@localhost:3306/myapp",
       });
       expect(result.success).toBe(true);
     });
@@ -34,7 +34,7 @@ describe("MySQL config schema", () => {
     test("rejects missing name", () => {
       const result = mysqlConfigSchema.safeParse({
         type: "mysql",
-        connection: validConnectionOptions
+        connection: validConnectionOptions,
       });
       expect(result.success).toBe(false);
     });
@@ -42,7 +42,7 @@ describe("MySQL config schema", () => {
     test("rejects missing connection", () => {
       const result = mysqlConfigSchema.safeParse({
         name: "my-db",
-        type: "mysql"
+        type: "mysql",
       });
       expect(result.success).toBe(false);
     });
@@ -51,7 +51,7 @@ describe("MySQL config schema", () => {
       const result = mysqlConfigSchema.safeParse({
         name: "my-db",
         type: "postgres",
-        connection: validConnectionOptions
+        connection: validConnectionOptions,
       });
       expect(result.success).toBe(false);
     });
@@ -62,8 +62,8 @@ describe("MySQL config schema", () => {
         type: "mysql",
         connection: {
           host: "localhost",
-          port: 3306
-        }
+          port: 3306,
+        },
       });
       expect(result.success).toBe(false);
     });
@@ -74,8 +74,8 @@ describe("MySQL config schema", () => {
         type: "mysql",
         connection: {
           ...validConnectionOptions,
-          port: "3306"
-        }
+          port: "3306",
+        },
       });
       expect(result.success).toBe(false);
     });
@@ -84,7 +84,7 @@ describe("MySQL config schema", () => {
       const result = mysqlConfigSchema.safeParse({
         name: "my-db",
         type: "mysql",
-        connection: "not-a-url"
+        connection: "not-a-url",
       });
       expect(result.success).toBe(false);
     });

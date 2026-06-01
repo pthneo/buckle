@@ -1,9 +1,9 @@
-import { Button } from "@app/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@app/components/ui/card";
-import type { Service, ServiceType } from "@app/types/services";
-import { SERVICE_TYPE_LABELS } from "@app/types/services";
 import { Cog, Database, Globe, HardDrive, Search, Settings, Trash2, Zap } from "lucide-react";
 import { StatusBadge } from "@/app/components/status-badge";
+import { Button } from "@/app/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
+import type { Service, ServiceType } from "@/app/types/services";
+import { SERVICE_TYPE_LABELS } from "@/app/types/services";
 
 const iconMap: Record<ServiceType, React.ElementType> = {
   app: Globe,
@@ -11,7 +11,7 @@ const iconMap: Record<ServiceType, React.ElementType> = {
   cache: Zap,
   search: Search,
   objectstore: HardDrive,
-  worker: Cog
+  worker: Cog,
 };
 
 interface ServiceCardProps {

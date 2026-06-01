@@ -1,8 +1,8 @@
-import { Button } from "@app/components/ui/button";
-import { cn } from "@app/lib/utils";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { XIcon } from "@phosphor-icons/react";
 import type * as React from "react";
+import { Button } from "@/app/components/ui/button";
+import { cn } from "@/app/lib/utils";
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
@@ -132,5 +132,5 @@ export {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 };

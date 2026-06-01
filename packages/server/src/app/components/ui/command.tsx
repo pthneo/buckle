@@ -1,17 +1,17 @@
 "use client";
 
+import { CheckIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { Command as CommandPrimitive } from "cmdk";
+import type * as React from "react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle
-} from "@app/components/ui/dialog";
-import { InputGroup, InputGroupAddon } from "@app/components/ui/input-group";
-import { cn } from "@app/lib/utils";
-import { CheckIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
-import { Command as CommandPrimitive } from "cmdk";
-import type * as React from "react";
+  DialogTitle,
+} from "@/app/components/ui/dialog";
+import { InputGroup, InputGroupAddon } from "@/app/components/ui/input-group";
+import { cn } from "@/app/lib/utils";
 
 function Command({ className, ...props }: React.ComponentProps<typeof CommandPrimitive>) {
   return (
@@ -170,11 +170,11 @@ function CommandShortcut({ className, ...props }: React.ComponentProps<"span">) 
 export {
   Command,
   CommandDialog,
-  CommandInput,
-  CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
+  CommandList,
+  CommandSeparator,
   CommandShortcut,
-  CommandSeparator
 };

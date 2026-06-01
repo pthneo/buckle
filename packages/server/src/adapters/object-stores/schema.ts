@@ -9,5 +9,5 @@ import { s3ConfigSchema } from "./s3/schema";
 export const objectStorageConfigSchema = z.discriminatedUnion("type", [
   s3ConfigSchema,
   r2ConfigSchema,
-  minioConfigSchema
+  minioConfigSchema,
 ]);

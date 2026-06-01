@@ -2,10 +2,10 @@ import { serve } from "bun";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
-import index from "@/app/index.html";
 import { loadConfig, watchConfig } from "@/config";
 import { ServiceRegistry } from "@/registry";
 import { api } from "@/routes";
+import index from "../dist/ui/index.html";
 
 const DEFAULT_PORT = 7260;
 const DEFAULT_CONFIG_PATH = "./buckle.yml";
@@ -60,19 +60,24 @@ async function main() {
   });
   app.route("/api", api);
 
+  const isProd = process.env.NODE_ENV === "production";
+
   // Start the server
   console.log(`Server running on port ${port}`);
-  serve({
-    port,
-    routes: {
-      "/*": index,
-      "/api/*": app.fetch
-    },
-    development: process.env.NODE_ENV !== "production" && {
-      hmr: true,
-      console: true
-    }
-  });
+  serve(
+    isProd
+      ? {
+          port,
+          routes: {
+            "/*": index,
+            "/api/*": app.fetch,
+          },
+        }
+      : {
+          port,
+          fetch: app.fetch,
+        }
+  );
 }
 
 main();

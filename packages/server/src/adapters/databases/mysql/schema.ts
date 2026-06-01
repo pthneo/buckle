@@ -11,7 +11,7 @@ const mysqlConnectionOptionsSchema = z.object({
   password: z.string({ error: "Password is required" }),
   port: z.number({ error: "Port is required" }),
   tls: z.boolean({ error: "TLS selection is required" }),
-  username: z.string({ error: "Username is required" })
+  username: z.string({ error: "Username is required" }),
 });
 
 /**
@@ -29,5 +29,5 @@ const mysqlConnectionSchema = z.xor([z.url(), mysqlConnectionOptionsSchema]);
 export const mysqlConfigSchema = z.object({
   connection: mysqlConnectionSchema,
   name: z.string(),
-  type: z.literal("mysql")
+  type: z.literal("mysql"),
 });

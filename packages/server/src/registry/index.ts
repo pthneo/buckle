@@ -9,7 +9,7 @@ export const CATEGORIES = [
   "search-engines",
   "object-stores",
   "apps",
-  "webhooks"
+  "webhooks",
 ] as const satisfies readonly Category[];
 
 /**
@@ -41,7 +41,7 @@ export class ServiceRegistry {
         name: database.name,
         description: database.description,
         type: database.type,
-        status: "unknown"
+        status: "unknown",
       });
     }
   }

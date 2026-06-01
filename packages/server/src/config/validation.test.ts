@@ -13,7 +13,7 @@ const EMPTY_DEFAULTS: Pick<
   objectStorages: [],
   queues: [],
   searchEngines: [],
-  webhooks: []
+  webhooks: [],
 };
 
 describe("validateConfig", () => {
@@ -33,7 +33,7 @@ describe("validateConfig", () => {
 
     expect(config).toEqual({
       ...EMPTY_DEFAULTS,
-      version: 1
+      version: 1,
     });
   });
 
@@ -50,7 +50,7 @@ describe("validateConfig", () => {
     const config = validateConfig({
       ...EMPTY_DEFAULTS,
       env: "production",
-      version: DEFAULT_CONFIG_VERSION
+      version: DEFAULT_CONFIG_VERSION,
     });
 
     expect(config.env).toBe("production");
@@ -63,10 +63,10 @@ describe("validateConfig", () => {
         {
           connection: ":memory:",
           name: "local-sqlite",
-          type: "sqlite"
-        }
+          type: "sqlite",
+        },
       ],
-      version: DEFAULT_CONFIG_VERSION
+      version: DEFAULT_CONFIG_VERSION,
     });
 
     expect(config.databases).toHaveLength(1);
@@ -78,7 +78,7 @@ describe("validateConfig", () => {
     expect(() =>
       validateConfig({
         ...EMPTY_DEFAULTS,
-        version: 0
+        version: 0,
       })
     ).toThrow();
   });
@@ -87,7 +87,7 @@ describe("validateConfig", () => {
     expect(() =>
       validateConfig({
         ...EMPTY_DEFAULTS,
-        version: 2
+        version: 2,
       })
     ).toThrow();
   });
@@ -97,7 +97,7 @@ describe("validateConfig", () => {
       validateConfig({
         ...EMPTY_DEFAULTS,
         databases: [{ connection: ":memory:", name: "x", type: "mongodb" }],
-        version: DEFAULT_CONFIG_VERSION
+        version: DEFAULT_CONFIG_VERSION,
       })
     ).toThrow();
   });

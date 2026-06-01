@@ -1,9 +1,9 @@
-import { Separator } from "@app/components/ui/separator";
-import { cn } from "@app/lib/utils";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
+import { Separator } from "@/app/components/ui/separator";
+import { cn } from "@/app/lib/utils";
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -36,18 +36,18 @@ const itemVariants = cva(
       variant: {
         default: "border-transparent",
         outline: "border-border",
-        muted: "border-transparent bg-muted/50"
+        muted: "border-transparent bg-muted/50",
       },
       size: {
         default: "gap-2.5 px-3 py-2.5",
         sm: "gap-2.5 px-3 py-2.5",
-        xs: "gap-2 in-data-[slot=dropdown-menu-content]:p-0 px-2.5 py-2"
-      }
+        xs: "gap-2 in-data-[slot=dropdown-menu-content]:p-0 px-2.5 py-2",
+      },
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
-    }
+      size: "default",
+    },
   }
 );
 
@@ -62,7 +62,7 @@ function Item({
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
-        className: cn(itemVariants({ variant, size, className }))
+        className: cn(itemVariants({ variant, size, className })),
       },
       props
     ),
@@ -70,8 +70,8 @@ function Item({
     state: {
       slot: "item",
       variant,
-      size
-    }
+      size,
+    },
   });
 }
 
@@ -83,12 +83,12 @@ const itemMediaVariants = cva(
         default: "bg-transparent",
         icon: "[&_svg:not([class*='size-'])]:size-4",
         image:
-          "size-10 overflow-hidden rounded-none group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 [&_img]:size-full [&_img]:object-cover"
-      }
+          "size-10 overflow-hidden rounded-none group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 [&_img]:size-full [&_img]:object-cover",
+      },
     },
     defaultVariants: {
-      variant: "default"
-    }
+      variant: "default",
+    },
   }
 );
 
@@ -174,13 +174,13 @@ function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
 
 export {
   Item,
-  ItemMedia,
-  ItemContent,
   ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
   ItemGroup,
+  ItemHeader,
+  ItemMedia,
   ItemSeparator,
   ItemTitle,
-  ItemDescription,
-  ItemHeader,
-  ItemFooter
 };

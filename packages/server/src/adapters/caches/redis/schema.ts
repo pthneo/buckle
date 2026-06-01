@@ -13,5 +13,5 @@ export const redisConfigSchema = z.object({
   tls: z.boolean().optional(),
   type: z.literal("redis"),
   url: z.string().optional(),
-  username: z.string().optional()
+  username: z.string().optional(),
 });

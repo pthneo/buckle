@@ -1,9 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@app/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@app/components/ui/tabs";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { LogStream } from "@/app/components/log-stream";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Spinner } from "@/app/components/ui/spinner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
 import { categoryQueries, ICONS, isCategory, LABELS } from "@/app/data";
 import NotFound from "@/app/pages/not-found";
 

@@ -12,5 +12,5 @@ export const s3ConfigSchema = z.object({
   name: z.string(),
   region: z.string().optional(),
   secretAccessKey: z.string(),
-  type: z.literal("s3")
+  type: z.literal("s3"),
 });
