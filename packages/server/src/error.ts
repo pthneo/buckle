@@ -1,6 +1,6 @@
 /**
  * Exit codes for the server.
  */
-export enum EXIT_CODES {
-  INVALID_CONFIG = 1,
-}
+export const EXIT_CODES = {
+  INVALID_CONFIHG: 1,
+} as const;
