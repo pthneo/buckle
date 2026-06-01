@@ -1,5 +1,14 @@
-node_modules/
+node_modules
 .turbo
 .env
 PLAN.md
 IDEAS.md
+# This is required for the server to work in development (it needs an index.html file)
+packages/server/dist/*
+!packages/server/dist/ui
+packages/server/dist/ui/*
+!packages/server/dist/ui/index.html 
+packages/server/dev/buckle.yml
+packages/server/dev/docker-compose.yml
+packages/cli/dist
+packages/docs/.mintlify

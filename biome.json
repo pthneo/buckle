@@ -1,18 +1,15 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/react",
+    "ultracite/biome/next",
+    "ultracite/biome/type-aware"
+  ],
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
-  },
-  "files": {
-    "ignoreUnknown": false,
-    "includes": [
-      "!dist",
-      "!node_modules",
-      "!.changeset",
-      "!packages/server/src/app/components/ui"
-    ]
   },
   "formatter": {
     "enabled": true,
@@ -24,35 +21,36 @@
     "attributePosition": "auto",
     "bracketSameLine": false,
     "bracketSpacing": true,
-    "expand": "auto",
-    "useEditorconfig": true
+    "expand": "auto"
   },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "suspicious": {
+        "noEmptyInterface": "off",
+        "noBitwiseOperators": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off",
+        "useImportExtensions": "off",
+        "noUnresolvedImports": "off"
+      },
       "style": {
-        "noEnum": "off",
-        "useConsistentTypeDefinitions": "off",
-        "noNonNullAssertion": "off"
+        "noNonNullAssertion": "off",
+        "noNestedTernary": "off",
+        "useConsistentTypeDefinitions": {
+          "level": "error",
+          "options": {
+            "style": "type"
+          }
+        }
       },
       "performance": {
         "noBarrelFile": "off"
+      },
+      "complexity": {
+        "useMaxParams": "off"
       }
     }
-  },
-  "javascript": {
-    "formatter": {
-      "jsxQuoteStyle": "double",
-      "quoteProperties": "asNeeded",
-      "trailingCommas": "none",
-      "semicolons": "always",
-      "arrowParentheses": "always",
-      "bracketSameLine": false,
-      "quoteStyle": "double",
-      "attributePosition": "auto",
-      "bracketSpacing": true
-    }
-  },
-  "extends": ["ultracite/core", "ultracite/biome/core", "ultracite/biome/react"]
+  }
 }

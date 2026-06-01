@@ -1,23 +1,13 @@
 pre-commit:
   jobs:
-    - run: bun x ultracite fix
-      glob:
-        - "**/*.js"
-        - "**/*.jsx"
-        - "**/*.ts"
-        - "**/*.tsx"
-        - "**/*.json"
-        - "**/*.jsonc"
-        - "**/*.css"
-      stage_fixed: true
-  parallel: true
+    - run: bun check
 
 pre-push:
   commands:
     test:
       run: bun test
-    typecheck:
-      run: bun run tsc --noEmit
+    check:
+      run: bun check
 
 commit-msg:
   commands:

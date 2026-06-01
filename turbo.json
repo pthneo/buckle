@@ -4,9 +4,10 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "ui-dist/**", ".mintlify/**"]
+      "outputs": ["dist/**", ".mintlify/**"]
     },
-    "dev": {
+    "server#dev": {
+      "dependsOn": ["server#server", "server#services"],
       "cache": false,
       "persistent": true
     },
@@ -14,12 +15,6 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
-    "typecheck": {
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
-    "lint": {
-      "outputs": []
-    }
+    "check": {}
   }
 }
