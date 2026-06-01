@@ -1,3 +1,4 @@
+// biome-ignore lint/performance/noNamespaceImport: react-resizable-panels types require namespace
 import * as ResizablePrimitive from "react-resizable-panels";
 
 import { cn } from "@/app/lib/utils";

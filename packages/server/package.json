@@ -29,7 +29,6 @@
     "@base-ui/react": "^1.5.0",
     "@fontsource-variable/geist": "^5.2.9",
     "@fontsource-variable/inter": "^5.2.8",
-    "@phosphor-icons/react": "^2.1.10",
     "@tanstack/react-query": "^5.100.8",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

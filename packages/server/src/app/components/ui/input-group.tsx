@@ -13,7 +13,6 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
         className
       )}
       data-slot="input-group"
-      role="group"
       {...props}
     />
   );
@@ -44,6 +43,7 @@ function InputGroupAddon({
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof inputGroupAddonVariants>) {
   return (
+    // biome-ignore lint/a11y/noNoninteractiveElementInteractions lint/a11y/useKeyWithClickEvents lint/a11y/noStaticElementInteractions: click-to-focus input pattern
     <div
       className={cn(inputGroupAddonVariants({ align }), className)}
       data-align={align}
@@ -54,7 +54,6 @@ function InputGroupAddon({
         }
         e.currentTarget.parentElement?.querySelector("input")?.focus();
       }}
-      role="group"
       {...props}
     />
   );

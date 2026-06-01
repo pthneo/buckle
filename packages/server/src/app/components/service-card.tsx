@@ -1,23 +1,13 @@
-import { Cog, Database, Globe, HardDrive, Search, Settings, Trash2, Zap } from "lucide-react";
+import { Settings, Trash2 } from "lucide-react";
 import { StatusBadge } from "@/app/components/status-badge";
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
-import type { Service, ServiceType } from "@/app/types/services";
-import { SERVICE_TYPE_LABELS } from "@/app/types/services";
+import { ICONS } from "@/app/data";
 
-const iconMap: Record<ServiceType, React.ElementType> = {
-  app: Globe,
-  database: Database,
-  cache: Zap,
-  search: Search,
-  objectstore: HardDrive,
-  worker: Cog,
-};
-
-interface ServiceCardProps {
+type ServiceCardProps = {
   onRemove: (id: string) => void;
   service: Service;
-}
+};
 
 function getServiceDetail(service: Service): string {
   switch (service.type) {
@@ -39,7 +29,7 @@ function getServiceDetail(service: Service): string {
 }
 
 export function ServiceCard({ service, onRemove }: ServiceCardProps) {
-  const Icon = iconMap[service.type];
+  const Icon = ICONS[service.category];
 
   return (
     <Card className="transition-colors hover:border-foreground/20">

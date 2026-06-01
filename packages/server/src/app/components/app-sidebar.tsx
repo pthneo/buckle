@@ -1,4 +1,4 @@
-import { type Icon, SparkleIcon, TerminalIcon } from "@phosphor-icons/react";
+import { type LucideIcon, Sparkles, Terminal } from "lucide-react";
 import { NavLink } from "@/app/components/nav-link";
 import {
   Sidebar,
@@ -13,14 +13,14 @@ import {
 } from "@/app/components/ui/sidebar";
 import { CATEGORIES, ICONS, LABELS } from "../data";
 
-const navItems: { title: string; url: string; icon: Icon }[] = [
-  { title: "Dashboard", url: "/", icon: TerminalIcon },
+const navItems: { title: string; url: string; icon: LucideIcon }[] = [
+  { title: "Dashboard", url: "/", icon: Terminal },
   ...CATEGORIES.map((category) => ({
     title: LABELS[category],
     url: `/${category}`,
     icon: ICONS[category],
   })),
-  { title: "Buckle AI", url: "/ai", icon: SparkleIcon },
+  { title: "Buckle AI", url: "/ai", icon: Sparkles },
 ];
 
 export function AppSidebar() {

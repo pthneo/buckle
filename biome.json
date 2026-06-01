@@ -46,7 +46,8 @@
         }
       },
       "performance": {
-        "noBarrelFile": "off"
+        "noBarrelFile": "off",
+        "noImgElement": "off"
       },
       "complexity": {
         "useMaxParams": "off"

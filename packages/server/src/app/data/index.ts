@@ -3,15 +3,15 @@ export * from "./databases";
 export * from "./metadata";
 
 import {
-  ArrowsLeftRightIcon,
-  DatabaseIcon,
-  HardDriveIcon,
-  type Icon,
-  LaptopIcon,
-  LightningIcon,
-  MagnifyingGlassIcon,
-  WebhooksLogoIcon,
-} from "@phosphor-icons/react";
+  ArrowLeftRight,
+  Database,
+  HardDrive,
+  Laptop,
+  type LucideIcon,
+  Search,
+  Webhook,
+  Zap,
+} from "lucide-react";
 
 // The categories of services
 export const CATEGORIES = [
@@ -25,14 +25,14 @@ export const CATEGORIES = [
 ] as const satisfies readonly Category[];
 
 // The icons for the categories
-export const ICONS: Record<Category, Icon> = {
-  apps: LaptopIcon,
-  databases: DatabaseIcon,
-  caches: LightningIcon,
-  "search-engines": MagnifyingGlassIcon,
-  "object-stores": HardDriveIcon,
-  queues: ArrowsLeftRightIcon,
-  webhooks: WebhooksLogoIcon,
+export const ICONS: Record<Category, LucideIcon> = {
+  apps: Laptop,
+  databases: Database,
+  caches: Zap,
+  "search-engines": Search,
+  "object-stores": HardDrive,
+  queues: ArrowLeftRight,
+  webhooks: Webhook,
 };
 
 // The labels for the categories
