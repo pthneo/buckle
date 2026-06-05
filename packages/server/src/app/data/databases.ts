@@ -5,3 +5,5 @@ export const databaseQueries = {
   all: () => categoryQueries.list("databases"),
   detail: (id: string) => categoryQueries.detail("databases", id),
 };
+
+// TODO: Add queries to obtain logs and perform SQL.
