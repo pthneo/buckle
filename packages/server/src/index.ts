@@ -1,6 +1,5 @@
 import { serve } from "bun";
 import { Hono } from "hono";
-import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { loadConfig, watchConfig } from "@/config";
 import { ServiceRegistry } from "@/registry";
@@ -14,6 +13,7 @@ async function main() {
   // Load the Buckle config
   const port = process.env.PORT || DEFAULT_PORT;
   const configPath = process.env.CONFIG_PATH || DEFAULT_CONFIG_PATH;
+  const isProd = process.env.NODE_ENV === "production";
   const config = await loadConfig(configPath);
 
   // Connect to the services
@@ -52,15 +52,12 @@ async function main() {
 
   // Configure the server
   const app = new Hono<AppEnv>().basePath("/");
-  app.use("*", cors());
-  app.use("*", logger()); // TODO: Check security
+  app.use("*", logger());
   app.use("/api/*", async (c, next) => {
     c.set("services", registry);
     await next();
   });
   app.route("/api", api);
-
-  const isProd = process.env.NODE_ENV === "production";
 
   // Start the server
   console.log(`Server running on port ${port}`);

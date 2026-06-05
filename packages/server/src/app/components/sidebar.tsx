@@ -27,14 +27,14 @@ const navItems: { title: string; url: string; icon: LucideIcon }[] = [
 export function Sidebar() {
   return (
     <SidebarPrimitive collapsible="icon" variant="floating">
-      <SidebarHeader className="h-12 border-border p-4">
+      <SidebarHeader className="h-12 border-border p-4 group-data-[collapsible=icon]:px-2">
         <div className="flex items-center gap-3 group-data-[collapsible=icon]:justify-center">
           <img
             alt="Buckle"
-            className="h-5 w-5 shrink-0 text-sidebar-primary"
-            height={20}
-            src="/favicon.ico"
-            width={20}
+            className="shrink-0 rounded-fulltext-sidebar-primary"
+            height={28}
+            src="/logo.webp"
+            width={28}
           />
           <Heading4 className="group-data-[collapsible=icon]:hidden">Buckle</Heading4>
         </div>

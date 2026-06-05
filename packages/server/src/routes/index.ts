@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { CATEGORIES } from "@/registry";
-import { createCategoryRoutes } from "./category";
+import { createCategoryRoutes } from "./categories";
 
 // Create a router for the API
 const api = new Hono<AppEnv>();

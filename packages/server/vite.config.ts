@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 const DEFAULT_DEV_APP_PORT = 7270;
-const DEFAULT_DEV_API_URL = "https://api.buckle.localhost";
+const DEFAULT_DEV_API_URL = "https://api.buckle.local";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],

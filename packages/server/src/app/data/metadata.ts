@@ -20,11 +20,15 @@ async function fetchMetadata(): Promise<Metadata> {
  * @returns True if the server is online, false otherwise
  */
 async function checkHealth(): Promise<boolean> {
-  const response = await fetch("/api/health");
-  if (!response.ok) {
+  try {
+    const response = await fetch("/api/health");
+    if (!response.ok) {
+      return false;
+    }
+    return true;
+  } catch {
     return false;
   }
-  return true;
 }
 
 export const metadataQueries = {
