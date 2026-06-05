@@ -1,7 +1,6 @@
 import { type LucideIcon, Sparkles, Terminal } from "lucide-react";
 import { NavLink } from "@/app/components/nav-link";
 import {
-  Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
@@ -10,8 +9,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  Sidebar as SidebarPrimitive,
 } from "@/app/components/ui/sidebar";
 import { CATEGORIES, ICONS, LABELS } from "../data";
+import { Heading4 } from "./typography";
 
 const navItems: { title: string; url: string; icon: LucideIcon }[] = [
   { title: "Dashboard", url: "/", icon: Terminal },
@@ -23,11 +24,11 @@ const navItems: { title: string; url: string; icon: LucideIcon }[] = [
   { title: "Buckle AI", url: "/ai", icon: Sparkles },
 ];
 
-export function AppSidebar() {
+export function Sidebar() {
   return (
-    <Sidebar collapsible="icon">
-      <SidebarHeader className="h-12 border-border border-b p-4">
-        <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
+    <SidebarPrimitive collapsible="icon" variant="floating">
+      <SidebarHeader className="h-12 border-border p-4">
+        <div className="flex items-center gap-3 group-data-[collapsible=icon]:justify-center">
           <img
             alt="Buckle"
             className="h-5 w-5 shrink-0 text-sidebar-primary"
@@ -35,9 +36,7 @@ export function AppSidebar() {
             src="/favicon.ico"
             width={20}
           />
-          <span className="font-bold text-sidebar-primary text-sm tracking-tight group-data-[collapsible=icon]:hidden">
-            Buckle
-          </span>
+          <Heading4 className="group-data-[collapsible=icon]:hidden">Buckle</Heading4>
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -69,6 +68,6 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-    </Sidebar>
+    </SidebarPrimitive>
   );
 }

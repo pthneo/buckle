@@ -1,7 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
-import { DashboardLayout } from "@/app/components/dashboard-layout";
+import { Layout } from "@/app/components/layout";
 import { TooltipProvider } from "@/app/components/ui/tooltip";
 import BuckleAiPage from "@/app/pages/ai";
 import CategoryPage from "@/app/pages/category";
@@ -9,16 +11,17 @@ import Dashboard from "@/app/pages/dashboard";
 import Logs from "@/app/pages/logs";
 import NotFound from "@/app/pages/not-found";
 import ServiceInspectPage from "@/app/pages/service-inspect";
+import "./index.css";
 
 const queryClient = new QueryClient();
 
-export function App() {
-  return (
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <BrowserRouter>
-          <DashboardLayout>
+          <Layout>
             <Routes>
               <Route element={<Dashboard />} path="/" />
               <Route element={<BuckleAiPage />} path="/ai" />
@@ -27,9 +30,9 @@ export function App() {
               <Route element={<CategoryPage />} path="/:category" />
               <Route element={<NotFound />} path="*" />
             </Routes>
-          </DashboardLayout>
+          </Layout>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  );
-}
+  </StrictMode>
+);
