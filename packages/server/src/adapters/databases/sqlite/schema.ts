@@ -3,7 +3,7 @@ import { z } from "zod";
 /**
  * Used to parse the connection options for a SQLite database
  *
- * Matches Bun's SQL.SQLiteOptions shape
+ * Matches the {@link SQLiteConnectionOptions} type
  */
 const sqliteConnectionOptionsSchema = z.object({
   adapter: z.literal("sqlite").optional(),
@@ -17,8 +17,12 @@ const sqliteConnectionOptionsSchema = z.object({
 
 /**
  * Either a path/URL string or a set of connection options must be provided
+ *
+ * Matches the {@link SQLiteConnection} type
  */
-const sqliteConnectionSchema = z.union([z.string(), sqliteConnectionOptionsSchema]);
+const sqliteConnectionSchema = z.union([z.string(), sqliteConnectionOptionsSchema], {
+  error: "Connection must be either a path/URL string or a set of connection options",
+});
 
 /**
  * Used to parse the SQLite config
@@ -27,6 +31,6 @@ const sqliteConnectionSchema = z.union([z.string(), sqliteConnectionOptionsSchem
  */
 export const sqliteConfigSchema = z.object({
   connection: sqliteConnectionSchema,
-  name: z.string(),
+  name: z.string({ error: "Service name is required" }),
   type: z.literal("sqlite"),
 });

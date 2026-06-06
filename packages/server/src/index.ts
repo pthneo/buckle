@@ -11,6 +11,7 @@ const DEFAULT_CONFIG_PATH = "./buckle.yml";
 
 async function main() {
   // Load the Buckle config
+  // TODO: Add better console logging / structure and colour using chalk (and verbose logging flag)
   const port = process.env.PORT || DEFAULT_PORT;
   const configPath = process.env.CONFIG_PATH || DEFAULT_CONFIG_PATH;
   const isProd = process.env.NODE_ENV === "production";
@@ -27,6 +28,7 @@ async function main() {
     registry = new ServiceRegistry(config);
     registry.connect();
     await registry.checkHealth();
+    console.log("Services reloaded.");
   });
 
   // Update status on an interval

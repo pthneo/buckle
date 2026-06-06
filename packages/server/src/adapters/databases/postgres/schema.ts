@@ -19,7 +19,9 @@ const postgresConnectionOptionsSchema = z.object({
  *
  * Matches the {@link PostgresConnection} type
  */
-const postgresConnectionSchema = z.xor([z.url(), postgresConnectionOptionsSchema]);
+const postgresConnectionSchema = z.xor([z.url(), postgresConnectionOptionsSchema], {
+  error: "Connection must be either a URL or a set of connection options",
+});
 
 /**
  * Used to parse the postgres config
@@ -28,7 +30,7 @@ const postgresConnectionSchema = z.xor([z.url(), postgresConnectionOptionsSchema
  */
 export const postgresConfigSchema = z.object({
   description: z.string().optional(),
-  name: z.string(),
+  name: z.string({ error: "Service name is required" }),
   type: z.literal("postgres"),
   connection: postgresConnectionSchema,
 });

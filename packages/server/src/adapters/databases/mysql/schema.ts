@@ -19,7 +19,9 @@ const mysqlConnectionOptionsSchema = z.object({
  *
  * Matches the {@link MySQLConnection} type
  */
-const mysqlConnectionSchema = z.xor([z.url(), mysqlConnectionOptionsSchema]);
+const mysqlConnectionSchema = z.xor([z.url(), mysqlConnectionOptionsSchema], {
+  error: "Connection must be either a URL or a set of connection options",
+});
 
 /**
  * Used to parse the MySQL config
@@ -28,6 +30,6 @@ const mysqlConnectionSchema = z.xor([z.url(), mysqlConnectionOptionsSchema]);
  */
 export const mysqlConfigSchema = z.object({
   connection: mysqlConnectionSchema,
-  name: z.string(),
+  name: z.string({ error: "Service name is required" }),
   type: z.literal("mysql"),
 });

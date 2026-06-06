@@ -6,7 +6,7 @@ import { z } from "zod";
  * Matches the {@link AppConfig} type
  */
 export const appConfigSchema = z.object({
-  healthEndpoint: z.string({ error: "Health endpoint is required" }),
-  name: z.string({ error: "Name is required" }),
-  url: z.string({ error: "URL is required" }),
+  healthEndpoint: z.url({ error: "Health endpoint is required" }),
+  name: z.string({ error: "Service name is required" }),
+  url: z.url({ error: "URL is required" }),
 });

@@ -6,8 +6,8 @@ import { sqliteConfigSchema } from "./sqlite/schema";
 /**
  * Used to parse the database config
  */
-export const databaseConfigSchema = z.discriminatedUnion("type", [
-  postgresConfigSchema,
-  mysqlConfigSchema,
-  sqliteConfigSchema,
-]);
+export const databaseConfigSchema = z.discriminatedUnion(
+  "type",
+  [postgresConfigSchema, mysqlConfigSchema, sqliteConfigSchema],
+  { error: "Invalid database type" }
+);
