@@ -6,8 +6,14 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".mintlify/**"]
     },
-    "server#dev": {
-      "dependsOn": ["server#server", "server#services"],
+    "@buckle/server#services": {
+      "cache": false
+    },
+    "@buckle/server#dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@buckle/server#server": {
       "cache": false,
       "persistent": true
     },

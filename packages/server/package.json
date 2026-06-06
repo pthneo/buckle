@@ -10,7 +10,7 @@
     "check": "ultracite check",
     "ui": "vite build",
     "server": "CONFIG_PATH=./dev/buckle.yml portless api.buckle bun --hot src/index.ts",
-    "services": "docker compose up -d -f /dev/docker-compose.yml"
+    "services": "docker compose -f ./dev/docker-compose.yml up -d"
   },
   "private": true,
   "devDependencies": {

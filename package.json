@@ -20,7 +20,7 @@
     "url": "https://github.com/pthneo/buckle/issues"
   },
   "scripts": {
-    "dev": "turbo server#dev",
+    "dev": "turbo run services dev server",
     "build": "turbo build",
     "test": "turbo test",
     "changeset": "changeset",
