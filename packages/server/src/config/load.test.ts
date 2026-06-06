@@ -15,6 +15,7 @@ function emptyConfig(): Config {
     apps: [],
     caches: [],
     databases: [],
+    workers: [],
     objectStorages: [],
     queues: [],
     searchEngines: [],

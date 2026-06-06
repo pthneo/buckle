@@ -19,6 +19,7 @@ export async function loadConfig(path: string, previous?: Config): Promise<Confi
     return {
       version: DEFAULT_CONFIG_VERSION,
       apps: [],
+      workers: [],
       caches: [],
       databases: [],
       objectStorages: [],

@@ -13,6 +13,7 @@ function baseConfig(overrides: Partial<Config> = {}): Config {
     apps: [],
     caches: [],
     databases: [],
+    workers: [],
     objectStorages: [],
     queues: [],
     searchEngines: [],

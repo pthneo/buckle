@@ -9,24 +9,27 @@ import {
   Laptop,
   type LucideIcon,
   Search,
+  Server,
   Webhook,
   Zap,
 } from "lucide-react";
 
 // The categories of services
 export const CATEGORIES = [
-  "databases",
+  "apps",
   "caches",
+  "databases",
+  "object-stores",
   "queues",
   "search-engines",
-  "object-stores",
-  "apps",
   "webhooks",
+  "workers",
 ] as const satisfies readonly Category[];
 
 // The icons for the categories
 export const ICONS: Record<Category, LucideIcon> = {
   apps: Laptop,
+  workers: Server,
   databases: Database,
   caches: Zap,
   "search-engines": Search,
@@ -38,6 +41,7 @@ export const ICONS: Record<Category, LucideIcon> = {
 // The labels for the categories
 export const LABELS: Record<Category, string> = {
   apps: "Apps",
+  workers: "Workers",
   databases: "Databases",
   caches: "Caches",
   "search-engines": "Search Engines",

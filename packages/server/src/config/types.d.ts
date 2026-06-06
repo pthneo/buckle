@@ -8,6 +8,7 @@ type Config = {
   apps: AppConfig[];
   caches: CacheConfig[];
   databases: DatabaseConfig[];
+  workers: WorkerConfig[];
   env?: string | undefined;
   objectStorages: ObjectStorageConfig[];
   queues: QueueConfig[];

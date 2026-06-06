@@ -2,6 +2,7 @@
 type Category =
   | "databases"
   | "caches"
+  | "workers"
   | "queues"
   | "search-engines"
   | "object-stores"

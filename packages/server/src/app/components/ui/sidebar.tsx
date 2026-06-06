@@ -266,7 +266,7 @@ function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof 
         onClick?.(event);
         toggleSidebar();
       }}
-      size="icon-sm"
+      size="icon"
       variant="ghost"
       {...props}
     >

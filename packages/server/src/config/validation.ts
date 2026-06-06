@@ -6,6 +6,7 @@ import { objectStorageConfigSchema } from "../adapters/object-stores/schema";
 import { queueConfigSchema } from "../adapters/queues/schema";
 import { searchEngineConfigSchema } from "../adapters/search-engines/schema";
 import { webhookConfigSchema } from "../adapters/webhooks/schema";
+import { workerConfigSchema } from "../adapters/workers/schema";
 
 const MIN_CONFIG_VERSION = 1;
 const MAX_CONFIG_VERSION = 1;
@@ -20,11 +21,16 @@ const configSchema = z.object({
   apps: z.array(appConfigSchema).optional().default([]),
   caches: z.array(cacheConfigSchema).optional().default([]),
   databases: z.array(databaseConfigSchema).optional().default([]),
+  workers: z.array(workerConfigSchema).optional().default([]),
   env: z.string().optional(),
   objectStorages: z.array(objectStorageConfigSchema).optional().default([]),
   queues: z.array(queueConfigSchema).optional().default([]),
   searchEngines: z.array(searchEngineConfigSchema).optional().default([]),
-  version: z.number().min(MIN_CONFIG_VERSION).max(MAX_CONFIG_VERSION),
+  version: z
+    .number()
+    .min(MIN_CONFIG_VERSION)
+    .max(MAX_CONFIG_VERSION)
+    .default(DEFAULT_CONFIG_VERSION),
   webhooks: z.array(webhookConfigSchema).optional().default([]),
 });
 

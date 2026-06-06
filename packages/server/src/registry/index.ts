@@ -9,6 +9,7 @@ export const CATEGORIES = [
   "search-engines",
   "object-stores",
   "apps",
+  "workers",
   "webhooks",
 ] as const satisfies readonly Category[];
 

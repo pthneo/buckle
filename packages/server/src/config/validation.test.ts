@@ -5,11 +5,19 @@ import { DEFAULT_CONFIG_VERSION, validateConfig } from "./validation";
 // Default values
 const EMPTY_DEFAULTS: Pick<
   Config,
-  "apps" | "caches" | "databases" | "objectStorages" | "queues" | "searchEngines" | "webhooks"
+  | "apps"
+  | "caches"
+  | "databases"
+  | "workers"
+  | "objectStorages"
+  | "queues"
+  | "searchEngines"
+  | "webhooks"
 > = {
   apps: [],
   caches: [],
   databases: [],
+  workers: [],
   objectStorages: [],
   queues: [],
   searchEngines: [],

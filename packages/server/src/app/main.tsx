@@ -27,7 +27,7 @@ createRoot(document.getElementById("root")!).render(
                 background: "black",
               },
               classNames: {
-                title: "font-heading font-light! text-foreground!",
+                title: "font-light! text-foreground!",
                 icon: "text-foreground!",
                 toast: "border-border!",
               },
