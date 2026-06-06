@@ -20,7 +20,7 @@ type Service = {
   // The description of the service
   description?: string | undefined;
   // The type of the service
-  type: string;
+  type?: string;
   // The status of the service
   status: "healthy" | "unhealthy" | "unknown";
 };

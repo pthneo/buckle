@@ -7,7 +7,7 @@ import { Layout } from "@/app/components/layout";
 import { TooltipProvider } from "@/app/components/ui/tooltip";
 import { api } from "@/app/data";
 import BuckleAiPage from "@/app/pages/ai";
-// import CategoryPage from "@/app/pages/category";
+import CategoryPage from "@/app/pages/category";
 import Dashboard from "@/app/pages/dashboard";
 // import Logs from "@/app/pages/logs";
 import NotFound from "@/app/pages/not-found";
@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={api}>
         <TooltipProvider>
           <Toaster
-            position="bottom-center"
+            position="bottom-right"
             toastOptions={{
               style: {
                 background: "black",
@@ -40,7 +40,7 @@ createRoot(document.getElementById("root")!).render(
                 <Route element={<BuckleAiPage />} path="/ai" />
                 {/* <Route element={<Logs />} path="/logs" /> */}
                 {/* <Route element={<ServiceInspectPage />} path="/:category/:serviceId" /> */}
-                {/* <Route element={<CategoryPage />} path="/:category" /> */}
+                <Route element={<CategoryPage />} path="/:category" />
                 <Route element={<NotFound />} path="*" />
               </Routes>
             </Layout>

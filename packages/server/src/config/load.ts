@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { file, YAML } from "bun";
-import { EXIT_CODES } from "../error";
+import { EXIT_CODES } from "../errors";
 import { DEFAULT_CONFIG_VERSION, validateConfig } from "./validation";
 
 /**
@@ -30,6 +30,7 @@ export async function loadConfig(path: string, previous?: Config): Promise<Confi
   }
 
   try {
+    console.log("Loading config file:", filepath);
     const rawConfig = await file(filepath).text();
     const parsedConfig = await YAML.parse(rawConfig);
     return validateConfig(parsedConfig);
@@ -40,7 +41,12 @@ export async function loadConfig(path: string, previous?: Config): Promise<Confi
       return previous;
     }
     // If the initial config is invalid, log the error and exit.
-    console.error("Failed to read config file:", error);
+    if (error instanceof Error && error.message) {
+      console.error(`Failed to read config file:\n${JSON.parse(error.message)}`);
+    } else {
+      console.error("An unknown error occurred while reading the config file.");
+    }
+
     process.exit(EXIT_CODES.INVALID_CONFIG);
   }
 }

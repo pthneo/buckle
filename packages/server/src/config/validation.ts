@@ -1,6 +1,5 @@
 import { z } from "zod";
-import { databaseConfigSchema } from "../adapters";
-import { appConfigSchema } from "../adapters/apps/schema";
+import { appConfigSchema, databaseConfigSchema } from "../adapters";
 import { cacheConfigSchema } from "../adapters/caches/schema";
 import { objectStorageConfigSchema } from "../adapters/object-stores/schema";
 import { queueConfigSchema } from "../adapters/queues/schema";
@@ -17,22 +16,25 @@ export const DEFAULT_CONFIG_VERSION = 1;
  *
  * Matches the {@link Config} type
  */
-const configSchema = z.object({
-  apps: z.array(appConfigSchema).optional().default([]),
-  caches: z.array(cacheConfigSchema).optional().default([]),
-  databases: z.array(databaseConfigSchema).optional().default([]),
-  workers: z.array(workerConfigSchema).optional().default([]),
-  env: z.string().optional(),
-  objectStorages: z.array(objectStorageConfigSchema).optional().default([]),
-  queues: z.array(queueConfigSchema).optional().default([]),
-  searchEngines: z.array(searchEngineConfigSchema).optional().default([]),
-  version: z
-    .number()
-    .min(MIN_CONFIG_VERSION)
-    .max(MAX_CONFIG_VERSION)
-    .default(DEFAULT_CONFIG_VERSION),
-  webhooks: z.array(webhookConfigSchema).optional().default([]),
-});
+const configSchema = z.object(
+  {
+    apps: z.array(appConfigSchema).optional().default([]),
+    caches: z.array(cacheConfigSchema).optional().default([]),
+    databases: z.array(databaseConfigSchema).optional().default([]),
+    workers: z.array(workerConfigSchema).optional().default([]),
+    env: z.string().optional(),
+    objectStorages: z.array(objectStorageConfigSchema).optional().default([]),
+    queues: z.array(queueConfigSchema).optional().default([]),
+    searchEngines: z.array(searchEngineConfigSchema).optional().default([]),
+    version: z
+      .number()
+      .min(MIN_CONFIG_VERSION)
+      .max(MAX_CONFIG_VERSION)
+      .default(DEFAULT_CONFIG_VERSION),
+    webhooks: z.array(webhookConfigSchema).optional().default([]),
+  },
+  { error: "Invalid or empty config file" }
+);
 
 /**
  * Validates the output of the yaml parser against the expected config schema.
@@ -44,7 +46,7 @@ const configSchema = z.object({
 export function validateConfig(config: unknown): Config {
   const result = configSchema.safeParse(config);
   if (!result.success) {
-    throw new Error(JSON.stringify(z.treeifyError(result.error)));
+    throw new Error(JSON.stringify(z.prettifyError(result.error)));
   }
   return result.data;
 }

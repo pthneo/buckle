@@ -1,5 +1,5 @@
 import { randomUUIDv7 } from "bun";
-import { createDatabaseAdapter } from "@/adapters";
+import { createAppAdapter, createDatabaseAdapter } from "@/adapters";
 
 // The categories of services
 export const CATEGORIES = [
@@ -42,6 +42,18 @@ export class ServiceRegistry {
         name: database.name,
         description: database.description,
         type: database.type,
+        status: "unknown",
+      });
+    }
+
+    for (const app of config.apps) {
+      const id = randomUUIDv7();
+      const adapter = createAppAdapter(app);
+      this.services.get("apps")!.set(id, {
+        adapter,
+        id,
+        name: app.name,
+        description: app.description,
         status: "unknown",
       });
     }

@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./categories";
 export * from "./databases";
 export * from "./metadata";
 

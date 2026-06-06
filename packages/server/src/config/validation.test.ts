@@ -64,6 +64,34 @@ describe("validateConfig", () => {
     expect(config.env).toBe("production");
   });
 
+  test("accepts an apps entry shape that conforms to appConfigSchema", () => {
+    const config = validateConfig({
+      ...EMPTY_DEFAULTS,
+      apps: [
+        {
+          name: "my-app",
+          url: "http://localhost:3000",
+          healthEndpoint: "http://localhost:3000/health",
+        },
+      ],
+      version: DEFAULT_CONFIG_VERSION,
+    });
+    expect(config.apps).toHaveLength(1);
+    expect(config.apps[0]?.name).toBe("my-app");
+    expect(config.apps[0]?.url).toBe("http://localhost:3000");
+    expect(config.apps[0]?.healthEndpoint).toBe("http://localhost:3000/health");
+  });
+
+  test("does not accept an apps entry shape that does not conform to appConfigSchema", () => {
+    expect(() =>
+      validateConfig({
+        ...EMPTY_DEFAULTS,
+        apps: [{ title: "my-app", location: "http://localhost:3000" }],
+        version: DEFAULT_CONFIG_VERSION,
+      })
+    ).toThrow();
+  });
+
   test("accepts a sqlite database entry shape required by databaseConfigSchema", () => {
     const config = validateConfig({
       ...EMPTY_DEFAULTS,
