@@ -7,7 +7,7 @@
     "dev": "portless buckle vite",
     "build": "bun build src/index.ts --outdir dist --target bun --minify --sourcemap=external",
     "test": "bun test",
-    "check": "bun test",
+    "check": "ultracite check",
     "ui": "vite build",
     "server": "CONFIG_PATH=./dev/buckle.yml portless api.buckle bun --hot src/index.ts",
     "services": "docker compose up -d -f /dev/docker-compose.yml"

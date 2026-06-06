@@ -68,3 +68,7 @@
 //     </Card>
 //   );
 // }
+
+export function ServiceCard() {
+  return null;
+}

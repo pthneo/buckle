@@ -109,3 +109,7 @@
 
 //   return <ServiceInspectInner category={slug} serviceId={serviceId} />;
 // }
+
+export default function ServiceInspectPage() {
+  return null;
+}

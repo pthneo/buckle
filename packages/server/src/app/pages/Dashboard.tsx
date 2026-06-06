@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { ICONS, LABELS, metadataQueries } from "@/app/data";
 import Fallback from "../components/fallback";
+import { Heading1 } from "../components/typography";
 import { Avatar, AvatarFallback } from "../components/ui/avatar";
 
 const container = {
@@ -37,7 +38,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-foreground text-xl tracking-tight">Dashboard</h1>
+        <Heading1>Dashboard</Heading1>
         <p className="mt-1 text-muted-foreground text-sm">
           An overview of your local infrastructure.
         </p>

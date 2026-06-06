@@ -9,7 +9,7 @@ export default function Header() {
   const { data, isPending } = useQuery(metadataQueries.health());
 
   return (
-    <header className="flex w-full p-2">
+    <header className="sticky top-0 z-10 flex w-full p-2">
       <div className="flex w-full items-center justify-between gap-3 rounded-lg border border-border bg-sidebar p-2">
         <div className="flex items-center gap-3">
           <SidebarTrigger className="transition-all duration-300 hover:scale-105" />

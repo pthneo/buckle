@@ -5,6 +5,8 @@ import { categoryQueries, isCategory, LABELS } from "@/app/data";
 import { cn } from "@/app/lib/utils";
 import NotFound from "@/app/pages/not-found";
 import Fallback from "../components/fallback";
+import Options from "../components/options";
+import { Heading1 } from "../components/typography";
 
 const statusTone: Record<ServiceResult["status"], string> = {
   healthy: "text-chart-2",
@@ -16,14 +18,20 @@ function CategoryBrowse({ category }: { category: Category }) {
   const { data, isPending, error, refetch } = useQuery(categoryQueries.list(category));
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-3">
+    <div className="w-full space-y-6">
+      <div className="flex w-full flex-col justify-between gap-3 sm:flex-row sm:items-center">
         <div>
-          <h1 className="text-foreground text-xl tracking-tight">{LABELS[category]}</h1>
+          <Heading1>{LABELS[category]}</Heading1>
           <p className="mt-1 text-muted-foreground text-sm">
             Select a service to view details and logs.
           </p>
         </div>
+        <Options
+          addFn={() => undefined}
+          filterFn={() => undefined}
+          searchFn={() => undefined}
+          sortFn={() => undefined}
+        />
       </div>
 
       {isPending ? (

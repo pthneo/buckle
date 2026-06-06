@@ -31,7 +31,10 @@ export function Subtitle({ children, className, ...props }: HTMLAttributes<HTMLP
 
 export function Heading1({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h1 className={cn("animate-in text-3xl duration-300 lg:text-4xl", className)} {...props}>
+    <h1
+      className={cn("animate-in text-foreground text-xl tracking-tight duration-300", className)}
+      {...props}
+    >
       {children}
     </h1>
   );
